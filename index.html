@@ -3,226 +3,930 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DED Express - Lançamento de Aulas Simplificado</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="logo.png" type="image/png">
-
+    <title>DED Mais + Assistente Automático</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px 30px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* evitar scroll duplo */
         }
-        header {
-            background-color: #6a0572; /* Um tom de roxo mais escuro para cabeçalho */
-            color: #fff;
-            padding: 30px 20px; /* Ajustado para dar espaço à logo */
-            border-radius: 10px 10px 0 0;
-            margin: -20px -30px 20px -30px;
+
+        /* Cabeçalho informativo */
+        .top-bar {
+            background: #1a2b4c;
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid #2a3f66;
+            flex-shrink: 0;
         }
-        .logo-container {
-            margin-bottom: 20px; /* Espaço abaixo da logo */
+        .top-bar .badge {
+            background: #2a73e8;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.3px;
         }
-        .logo-container img {
-            max-height: 120px; /* Altura máxima da logo */
-            width: auto;
-            display: block; /* Para centralizar */
-            margin: 0 auto; /* Para centralizar */
+        .top-bar span {
+            opacity: 0.9;
         }
-        h1 {
-            margin-top: 0;
-            font-size: 2.8em;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-        h2 {
-            color: #6a0572; /* Cor de destaque */
-            font-size: 1.8em;
-            margin-top: 30px;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-        ul li {
-            background-color: #e9f0ef;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-left: 5px solid #88b04b; /* Um verde-azulado para diferenciação */
-            border-radius: 5px;
-            text-align: left;
-            font-size: 1.05em;
-            transition: transform 0.3s ease-in-out;
-        }
-        ul li:hover {
-            transform: translateX(5px);
-        }
-        .contact-info {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px dashed #e0e0e0;
-        }
-        .contact-info a {
-            color: #6a0572;
+        .top-bar a {
+            color: #ffd966;
             text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s ease;
-            display: block;
-            margin-bottom: 10px;
+            margin-left: auto;
+            font-weight: 500;
         }
-        .contact-info a:hover {
-            color: #4b034f;
+        .top-bar a:hover {
             text-decoration: underline;
         }
-        /* Novo estilo para destaque em blocos de texto */
-        .bold-highlight {
-            font-weight: 700;
-            color: #6a0572; /* Roxo do tema */
-            background-color: #e9f0ef; /* Leve fundo para contraste */
-            padding: 2px 5px;
-            border-radius: 3px;
+
+        /* Container principal com split screen */
+        .split {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            gap: 0;
+            background: #e9ecf2;
         }
-        .highlight {
-            color: #88b04b; /* Cor de destaque para o slogan */
-            font-weight: 700;
+
+        /* Lado esquerdo: site DED Mais */
+        .left {
+            flex: 1 1 60%; /* ocupa 60% do espaço */
+            min-width: 0;   /* importante para iframe não vazar */
+            background: #ffffff;
+            border-right: 3px solid #b0c4de;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
         }
-        /* Estilos para as imagens */
-        .image-container {
-            margin: 30px 0;
-            text-align: center;
+
+        .left-header {
+            background: #eef3fc;
+            padding: 8px 15px;
+            border-bottom: 1px solid #b8cbe0;
+            font-weight: 600;
+            color: #0b2b4f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .image-container img {
-            max-width: 80%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-        /* Estilos para o botão WhatsApp */
-        .whatsapp-button {
+        .left-header .favicon {
+            width: 18px;
+            height: 18px;
+            background: #1a73e8;
+            border-radius: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: #25D366; /* Verde WhatsApp */
-            color: #fff !important;
-            padding: 15px 30px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .left-header .url {
+            font-size: 13px;
+            color: #1e3a6b;
+            background: #dee9fa;
+            padding: 3px 12px;
             border-radius: 30px;
-            font-size: 1.4em;
-            font-weight: 700;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+            font-weight: 400;
         }
-        .whatsapp-button:hover {
-            background-color: #1DA851;
-            transform: translateY(-2px);
+
+        .left iframe {
+            width: 100%;
+            flex: 1;
+            border: none;
+            background: white;
         }
-        .whatsapp-button i {
-            margin-right: 10px;
-            font-size: 1.6em;
+
+        /* Lado direito: container onde o widget será injetado */
+        .right {
+            flex: 1 1 40%;
+            min-width: 380px;  /* garante espaço para o widget */
+            background: #f4f7fb;
+            position: relative;
+            overflow: hidden;   /* para que o widget fixo fique contido visualmente */
+            box-shadow: -2px 0 10px rgba(0,0,0,0.03);
         }
-        footer {
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #777;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+
+        /* Área que receberá o script do widget (shadow dom será anexada aqui) */
+        #widget-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #f4f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* fallback enquanto o widget carrega */
+            background-image: radial-gradient(circle at 20px 20px, #dbe4f0 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* loading opcional */
+        .loading-widget {
+            color: #2c3e50;
+            font-size: 15px;
+            background: rgba(255,255,255,0.8);
+            padding: 12px 25px;
+            border-radius: 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+
+        /* Ajustes de responsividade: se a tela for muito pequena, empilha */
+        @media (max-width: 900px) {
+            .split {
+                flex-direction: column;
+            }
+            .left, .right {
+                flex: 1 1 auto;
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #b0c4de;
+            }
+            .right {
+                min-width: unset;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="logo.png" alt="Logo DED Express">
-            </div>
-            <h3>Simples, direto, prático e eficiente</h3>
-            <p>Sua rotina escolar simplificada. Mais tempo para você, <span class="highlight">mais foco na educação.</span></p>
-        </header>
 
-        <section>
-            <h2>Chega de Perder Tempo no Diário Digital!</h2>
-            <p>Seu tempo é precioso. Não gaste horas preenchendo o Diário Eletrônico Digital. Ofereço um serviço especializado para <span class="bold-highlight">lançar suas aulas no DED de forma rápida e precisa</span>, liberando você das tarefas repetitivas.</p>
-            <div class="image-container">
-                <img src="teacher.png" alt="Professor sorrindo e focado">
-                <p style="font-size: 0.9em; color: #777;">Imagine mais tempo para o que realmente importa: seus alunos!</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Como Funciona o Serviço?</h2>
-            <ul>
-                <li><strong>Você nos Envia:</strong> Forneça o acesso (login e senha) ao seu DED e os dados das aulas (títulos, datas, etc.).</li>
-                <li><strong>Nós Lançamos:</strong> Com <span class="bold-highlight">total segurança e agilidade</span>, realizamos o lançamento das suas aulas no sistema.</li>
-                <li><strong>Confirmação e Relatório:</strong> Após os lançamentos, você recebe um relatório de confirmação das aulas cadastradas.</li>
-                <li><strong>Suporte Garantido:</strong> Qualquer dúvida ou ajuste, estamos à disposição para te ajudar.</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Benefícios Exclusivos para Professores:</h2>
-            <p>✅ <span class="bold-highlight">Foco Total na Pedagogia:</span> Deixe a burocracia conosco e dedique-se ao ensino de qualidade.</p>
-            <p>✅ <span class="bold-highlight">Otimização do Seu Tempo:</span> Conclua em minutos o que antes levava horas de trabalho manual.</p>
-            <p>✅ <span class="bold-highlight">Redução de Erros:</span> Lançamentos feitos com precisão e automação minimizam falhas.</p>
-            <p>✅ <span class="bold-highlight">Segurança e Confidencialidade:</span> Seus dados e acesso são tratados com o máximo sigilo e responsabilidade.</p>
-            <div class="image-container">
-                <img src="time.jpg" alt="Tempo sendo economizado">
-                <p style="font-size: 0.9em; color: #777;">Liberte-se das planilhas e da digitação interminável.</p>
-            </div>
-        </section>
-
-        <section class="contact-info">
-            <h2>Pronto para Simplificar Sua Vida?</h2>
-            <p>Entre em contato hoje mesmo para um orçamento sem compromisso e comece a <span class="highlight">ganhar tempo!</span></p>
-           
-            
-            <a href="https://wa.me/5538991582493?text=Olá!%20Tenho%20interesse%20em%20contratar%20o%20serviço%20de%20lançamento%20de%20aulas%20no%20DED.%20Poderia%20me%20dar%20mais%20detalhes?" class="whatsapp-button" target="_blank">
-                <i class="fab fa-whatsapp"></i> Contrate-nos
-            </a>
-            
-        </section>
-
-        <footer>
-            <p>&copy; DED+ Express</p>
-        </footer>
+    <div class="top-bar">
+        <div class="badge">⚡ DED+ Express</div>
+        <span>Assistente de cadastro automático de aulas</span>
+        <a href="#" id="info-link">Como usar →</a>
     </div>
 
-    <script>
-        const titleElement = document.getElementById('main-title');
-        const originalTitle = titleElement.textContent;
-        titleElement.textContent = ''; 
-        let i = 0;
+    <div class="split">
+        <!-- Lado ESQUERDO: iframe com o site do DED Mais -->
+        <div class="left">
+            <div class="left-header">
+                <span class="favicon">📘</span>
+                <span>Plataforma DED Mais</span>
+                <span class="url">https://dedmais.educacao.mg.gov.br</span>
+            </div>
+            <iframe 
+                src="https://dedmais.educacao.mg.gov.br/" 
+                title="DED Mais"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads allow-modals allow-storage-access-by-user-activation"
+                allow="fullscreen; clipboard-write"
+                loading="lazy">
+                Seu navegador não suporta iframes.
+            </iframe>
+        </div>
 
-        function typeWriter() {
-            if (i < originalTitle.length) {
-                titleElement.textContent += originalTitle.charAt(i);
-                i++;
-                setTimeout(typeWriter, 70); 
+        <!-- Lado DIREITO: container especial para o widget (shadow dom auto-contido) -->
+        <div class="right">
+            <div id="widget-container">
+                <div class="loading-widget">🔌 Carregando assistente DED+...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        =========================================================================
+        INJEÇÃO DO WIDGET (código fornecido: widget.js)
+        =========================================================================
+        Vamos colocar o conteúdo exato do widget.js dentro de uma tag script.
+        Porém, precisamos garantir que o elemento #widget-container exista 
+        e que o script seja executado depois que a página estiver pronta.
+        O widget.js foi projetado para criar um host fixo no BODY, mas queremos
+        que ele fique DENTRO do container direito. Vamos fazer uma adaptação:
+        
+        - O original usa `document.body.appendChild(host)`. 
+        - Para que ele fique restrito ao lado direito, vamos substituir 
+          `document.body` pelo elemento `#widget-container`.
+        - Também vamos remover a lógica de `chrome.runtime.onMessage` que não 
+          se aplica (ou manter, não atrapalha).
+        - O widget já usa shadow DOM, então o CSS não vaza. Perfeito.
+
+        A solução: reescrever a linha `document.body.appendChild(host);` 
+        para usar o container. Além disso, o original usa um atalho para não 
+        duplicar (verifica se já existe #ded-host). Como queremos apenas um 
+        widget por container, manteremos a verificação, mas o id #ded-host 
+        ainda será único. Caso a página recarregue, será recriado.
+
+        Também vamos garantir que o script carregue depois que o container 
+        estiver pronto.
+    -->
+
+    <script>
+        (function() {
+            'use strict';
+
+            // Elemento onde o widget deve ser montado (substitui document.body)
+            const container = document.getElementById('widget-container');
+            if (!container) {
+                console.error('Container do widget não encontrado');
+                return;
             }
-        }
-        typeWriter();
+
+            // Limpa o conteúdo de loading
+            container.innerHTML = '';
+
+            // --- CÓDIGO DO WIDGET (adaptado) ---
+            // (baseado no widget.js fornecido, com pequena alteração no local de anexo)
+            
+            // ── Reabre se já existir (mas vamos ignorar se já existir no container) ─
+            // Como o container é limpo, não há risco, mas mantemos a lógica original
+            // só por precaução, mas o host será criado dentro do container.
+            // Vamos alterar a variável 'host' para ser anexada ao container, não ao body.
+            
+            // (O código original usa `document.body.appendChild(host);` 
+            // Vamos substituir por `container.appendChild(host);`)
+
+            // Cópia fiel do widget.js (editado no local do appendChild)
+
+            // CÓDIGO INICIADO (quase idêntico ao original, com a modificação)
+            // Shadow DOM = isolamento total de CSS + drag + close funcionando
+
+            // Pequena adaptação: evitar conflito com possíveis variáveis externas
+            // Vamos encapsular em uma função imediata para não poluir.
+
+            function initWidget() {
+                // ── Reabre se já existir ──────────────────
+                const existing = document.getElementById('ded-host');
+                if (existing) { 
+                    existing.style.display = ''; 
+                    container.appendChild(existing); // move para o container se necessário
+                    return; 
+                }
+
+                // ── Host: posição fixa na página ─────────
+                const host = document.createElement('div');
+                host.id = 'ded-host';
+                Object.assign(host.style, {
+                    position:  'fixed',
+                    top:       '24px',
+                    right:     '24px',
+                    left:      'auto',
+                    bottom:    'auto',
+                    width:     '420px',
+                    zIndex:    '2147483647',
+                    boxSizing: 'border-box',
+                });
+
+                // ── Shadow DOM: CSS totalmente isolado ───
+                const shadow = host.attachShadow({ mode: 'open' });
+
+                shadow.innerHTML = `
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+                    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+                    :host { display: block; }
+
+                    #shell {
+                        font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+                        font-size: 13px;
+                        color: #333;
+                        background: #fff;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        box-shadow: 0 8px 32px rgba(26,115,232,0.20), 0 2px 8px rgba(0,0,0,0.10);
+                        border: 1px solid rgba(26,115,232,0.18);
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    /* ── Header ── */
+                    #header {
+                        background: linear-gradient(135deg, #1a73e8 0%, #1558b0 100%);
+                        padding: 12px 14px;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        cursor: grab;
+                        user-select: none;
+                        touch-action: none;
+                    }
+                    #header.grabbing { cursor: grabbing; }
+
+                    #logo { font-size: 20px; flex-shrink: 0; }
+
+                    #title-block { flex: 1; min-width: 0; }
+                    #title    { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0.2px; }
+                    #subtitle { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 500; margin-top: 1px; }
+
+                    #header-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+                    .hbtn {
+                        width: 28px; height: 28px;
+                        border-radius: 7px; border: none;
+                        display: flex; align-items: center; justify-content: center;
+                        cursor: pointer; font-size: 14px; font-weight: 700;
+                        color: rgba(255,255,255,0.85);
+                        background: transparent;
+                        transition: background 0.15s, color 0.15s;
+                    }
+                    .hbtn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+                    #btn-close:hover { background: rgba(220,38,38,0.55); }
+
+                    /* ── Body ── */
+                    #body { overflow-y: auto; max-height: 76vh; background: #fff; }
+                    #shell.maximized #body { max-height: 82vh; }
+
+                    /* ── Sections ── */
+                    .sec { margin: 10px 12px 0; border-radius: 9px; border: 1px solid #e2e6f0; overflow: hidden; }
+                    .sec:last-child { margin-bottom: 10px; }
+                    .sec-head {
+                        background: #f6f8fc; padding: 7px 12px;
+                        font-size: 10px; font-weight: 800; color: #6b7280;
+                        text-transform: uppercase; letter-spacing: 0.6px;
+                        border-bottom: 1px solid #e2e6f0;
+                        display: flex; align-items: center; gap: 6px;
+                    }
+                    .sec-body { padding: 12px; }
+
+                    /* ── Form ── */
+                    .lbl {
+                        display: block; font-size: 10px; font-weight: 700; color: #6b7280;
+                        text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+                    }
+                    input[type="date"], input[type="number"], input[type="text"], textarea {
+                        display: block; width: 100%;
+                        padding: 7px 10px; border-radius: 7px;
+                        border: 1.5px solid #e2e6f0;
+                        font-size: 12px; font-family: inherit; color: #333;
+                        background: #f6f8fc; outline: none;
+                        transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+                    }
+                    input:focus, textarea:focus {
+                        border-color: #1a73e8;
+                        box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+                        background: #fff;
+                    }
+                    textarea { min-height: 50px; resize: vertical; }
+                    .row2 { display: flex; gap: 8px; }
+                    .row2 > div { flex: 1; }
+
+                    /* ── Dias ── */
+                    #tabela-dias { width: 100%; border-collapse: collapse; }
+                    #tabela-dias th { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; padding: 4px 6px; border-bottom: 1px solid #e2e6f0; text-align: left; }
+                    #tabela-dias td { padding: 4px 6px; border-bottom: 1px solid #f4f5fb; vertical-align: middle; }
+                    #tabela-dias tr:last-child td { border-bottom: none; }
+
+                    .dia-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+                    .dia-label input[type="checkbox"] { width: 15px; height: 15px; accent-color: #1a73e8; cursor: pointer; }
+
+                    input.qtd {
+                        width: 54px !important;
+                        text-align: center; padding: 5px 8px;
+                    }
+                    input.qtd:disabled { opacity: 0.3; cursor: not-allowed; background: #f0f0f0; }
+
+                    /* ── Contador ── */
+                    #msg-info {
+                        font-size: 11px; margin-top: 8px; font-weight: 700;
+                        padding: 5px 10px; border-radius: 7px; text-align: center; min-height: 16px;
+                    }
+                    #msg-info.ok  { color: #166534; background: #f0fdf4; }
+                    #msg-info.err { color: #dc2626; background: #fef2f2; }
+
+                    /* ── Pular datas ── */
+                    #add-pular-row { display: flex; gap: 6px; align-items: center; }
+                    #add-pular-row input { flex: 1; }
+                    #btn-add-pular {
+                        padding: 6px 12px; border-radius: 7px;
+                        border: 1.5px solid #fca5a5; background: #fef2f2;
+                        color: #dc2626; font-size: 11px; font-weight: 700;
+                        cursor: pointer; white-space: nowrap; flex-shrink: 0;
+                        font-family: inherit;
+                    }
+                    #btn-add-pular:hover { background: #fee2e2; }
+                    #lista-pular { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+                    .tag-pular {
+                        display: inline-flex; align-items: center; gap: 5px;
+                        background: #fff1f1; border: 1px solid #fca5a5;
+                        border-radius: 20px; padding: 3px 10px;
+                        font-size: 11px; font-weight: 600; color: #dc2626;
+                    }
+                    .tag-pular button { background: none; border: none; cursor: pointer; font-size: 15px; color: #f87171; padding-left: 2px; }
+                    .tag-pular button:hover { color: #dc2626; }
+
+                    /* ── Buttons ── */
+                    .btn-ia {
+                        display: block; width: 100%; padding: 10px; border-radius: 9px; border: none;
+                        background: linear-gradient(135deg, #6f42c1, #5635a0);
+                        color: #fff; font-weight: 800; font-size: 13px;
+                        cursor: pointer; font-family: inherit;
+                        box-shadow: 0 3px 12px rgba(111,66,193,0.30);
+                        transition: opacity 0.15s, transform 0.1s; margin-top: 12px;
+                    }
+                    .btn-ia:hover   { opacity: 0.9; transform: translateY(-1px); }
+                    .btn-ia:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+                    .btn-row { display: flex; gap: 7px; margin-top: 8px; }
+                    .btn-sec {
+                        flex: 1; padding: 8px 10px; border-radius: 8px;
+                        border: 1.5px solid #e2e6f0; background: #f6f8fc;
+                        color: #444; font-size: 11px; font-weight: 700;
+                        cursor: pointer; text-align: center; font-family: inherit;
+                        transition: background 0.15s;
+                    }
+                    .btn-sec:hover { background: #eaedff; border-color: #b8c4f0; }
+
+                    .btn-green {
+                        display: block; width: 100%; padding: 10px; border-radius: 9px; border: none;
+                        background: linear-gradient(135deg, #28a745, #1e7e34);
+                        color: #fff; font-weight: 800; font-size: 13px;
+                        cursor: pointer; font-family: inherit; margin-top: 10px;
+                        box-shadow: 0 3px 12px rgba(40,167,69,0.28);
+                        transition: opacity 0.15s;
+                    }
+                    .btn-green:hover   { opacity: 0.9; }
+                    .btn-green:disabled { opacity: 0.4; cursor: not-allowed; }
+
+                    .btn-link {
+                        background: none; border: none; color: #1a73e8;
+                        font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit;
+                    }
+                    .btn-link:hover { text-decoration: underline; }
+
+                    /* ── Progress ── */
+                    #prog-track { background: #e2e6f0; border-radius: 99px; height: 7px; overflow: hidden; margin-top: 6px; }
+                    #prog-bar   { height: 100%; width: 0%; background: linear-gradient(90deg, #1a73e8, #6f42c1); border-radius: 99px; transition: width 0.4s ease; }
+                    #prog-info  { display: flex; justify-content: space-between; font-size: 11px; color: #6b7280; margin-top: 4px; }
+
+                    /* ── Table ── */
+                    #tabela-wrap { max-height: 260px; overflow-y: auto; border-radius: 8px; border: 1px solid #e2e6f0; }
+                    #shell.maximized #tabela-wrap { max-height: 440px; }
+
+                    table.aulas { width: 100%; border-collapse: collapse; font-size: 11px; }
+                    table.aulas th {
+                        background: #f6f8fc; padding: 7px 8px; text-align: left;
+                        font-weight: 800; color: #6b7280; font-size: 10px;
+                        text-transform: uppercase; letter-spacing: 0.5px;
+                        border-bottom: 1.5px solid #e2e6f0; position: sticky; top: 0;
+                    }
+                    table.aulas td { border-bottom: 1px solid #f0f2fc; padding: 3px 4px; vertical-align: top; }
+                    table.aulas td:first-child { word-break: break-word; white-space: normal; }
+                    table.aulas td textarea, table.aulas td input[type="date"] {
+                        display: block; width: 100%; font-size: 11px; padding: 4px 6px;
+                        border-radius: 6px; border: 1px solid transparent;
+                        background: transparent; font-family: inherit; color: #333; line-height: 1.45;
+                    }
+                    table.aulas td textarea { resize: none; overflow: hidden; min-height: 26px; }
+                    table.aulas td textarea:focus, table.aulas td input:focus {
+                        border-color: #1a73e8; background: #fff;
+                        box-shadow: 0 0 0 2px rgba(26,115,232,0.12); outline: none;
+                    }
+
+                    .linha { transition: background 0.25s; }
+                    .linha-ativa { background: #fffbeb !important; }
+                    .linha-ok    { background: #f0fdf4 !important; }
+                    .linha-ok td textarea, .linha-ok td input { color: #166534 !important; }
+
+                    .btn-del-row {
+                        width: 22px; height: 22px;
+                        border-radius: 50%; border: none;
+                        background: #fff0f0; color: #dc2626;
+                        font-size: 15px; font-weight: 700; line-height: 1;
+                        cursor: pointer; display: inline-flex;
+                        align-items: center; justify-content: center;
+                        transition: background 0.15s, transform 0.1s;
+                        font-family: inherit; padding: 0;
+                    }
+                    .btn-del-row:hover { background: #dc2626; color: #fff; transform: scale(1.15); }
+
+                    .hidden { display: none !important; }
+
+                    #body::-webkit-scrollbar, #tabela-wrap::-webkit-scrollbar { width: 5px; }
+                    #body::-webkit-scrollbar-thumb, #tabela-wrap::-webkit-scrollbar-thumb { background: #c5cff0; border-radius: 99px; }
+                </style>
+
+                <div id="shell">
+                  <div id="header">
+                    <span id="logo">⚡</span>
+                    <div id="title-block">
+                      <div id="title">DED+ Express</div>
+                      <div id="subtitle">Assistente de Aulas IA</div>
+                    </div>
+                    <div id="header-actions">
+                      <button class="hbtn" id="btn-maximize" title="Maximizar">⤢</button>
+                      <button class="hbtn" id="btn-close" title="Fechar">✕</button>
+                    </div>
+                  </div>
+
+                  <div id="body">
+                    <div id="etapa1">
+                      <div class="sec">
+                        <div class="sec-head">📅 Período</div>
+                        <div class="sec-body">
+                          <div class="row2">
+                            <div><label class="lbl">Data início</label><input type="date" id="data-inicio"></div>
+                            <div><label class="lbl">Data fim</label><input type="date" id="data-fim"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="sec">
+                        <div class="sec-head">📆 Dias &amp; Aulas por Dia</div>
+                        <div class="sec-body" style="padding:8px 12px">
+                          <table id="tabela-dias">
+                            <thead><tr><th>Dia</th><th>Aulas/dia</th></tr></thead>
+                            <tbody id="dias-tbody"></tbody>
+                          </table>
+                          <div id="msg-info"></div>
+                        </div>
+                      </div>
+
+                      <div class="sec">
+                        <div class="sec-head">🚫 Datas a Pular</div>
+                        <div class="sec-body">
+                          <div id="add-pular-row">
+                            <input type="date" id="input-pular">
+                            <button id="btn-add-pular">+ Adicionar</button>
+                          </div>
+                          <div id="lista-pular"></div>
+                        </div>
+                      </div>
+
+                      <div class="sec">
+                        <div class="sec-head">🤖 Assunto (IA)</div>
+                        <div class="sec-body">
+                          <textarea id="ia-tema" placeholder="Ex: Cálculo Diferencial, Redes de Computadores..."></textarea>
+                        </div>
+                      </div>
+
+                      <div style="padding:0 12px 14px">
+                        <button class="btn-ia" id="btn-gerar" style="margin-top:12px">✨ Gerar Títulos com IA</button>
+                        <div class="btn-row">
+                          <button class="btn-sec" id="btn-manual">✏️ Manual</button>
+                          <label class="btn-sec" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px">
+                            📂 Importar CSV/Excel
+                            <input type="file" id="input-file" accept=".csv,.xlsx,.xls" style="display:none">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="etapa2" class="hidden">
+                      <div class="sec" style="margin:10px 12px">
+                        <div class="sec-head" style="justify-content:space-between">
+                          <span id="label-total">Aulas geradas</span>
+                          <button class="btn-link" id="btn-voltar">← Voltar</button>
+                        </div>
+                        <div class="sec-body">
+                          <div id="prog-wrap" class="hidden">
+                            <div id="prog-info">
+                              <span id="prog-label">Aguardando...</span>
+                              <span id="prog-pct">0%</span>
+                            </div>
+                            <div id="prog-track"><div id="prog-bar"></div></div>
+                          </div>
+                          <div id="tabela-wrap" style="margin-top:8px">
+                            <table class="aulas">
+                              <thead><tr><th style="width:55%">Título da Aula</th><th style="width:35%">Data</th><th style="width:10%;text-align:center"></th></tr></thead>
+                              <tbody id="tabela-corpo"></tbody>
+                            </table>
+                          </div>
+                          <button class="btn-green" id="btn-iniciar">🚀 Iniciar Cadastro</button>
+                          <div style="display:flex;justify-content:flex-end;margin-top:8px">
+                            <button class="btn-link" id="btn-exportar">⬇️ Exportar CSV</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+
+                // Troca fundamental: anexar ao container, não ao body
+                container.appendChild(host);
+
+                // ── Atalho para elementos dentro do Shadow ─
+                const S = (id) => shadow.getElementById(id);
+
+                // ── Popula tabela de dias ─────────────────
+                const DIAS = [['Segunda',1],['Terça',2],['Quarta',3],['Quinta',4],['Sexta',5],['Sábado',6]];
+                S('dias-tbody').innerHTML = DIAS.map(([n,d]) => `
+                    <tr>
+                      <td><label class="dia-label"><input type="checkbox" data-dia="${d}"> ${n}</label></td>
+                      <td><input type="number" class="qtd" data-dia="${d}" value="1" min="1" max="10" disabled></td>
+                    </tr>`).join('');
+
+                // ── Datas iniciais ────────────────────────
+                const hoje = new Date();
+                const fim3 = new Date(); fim3.setMonth(fim3.getMonth() + 3);
+                S('data-inicio').value = toISO(hoje);
+                S('data-fim').value    = toISO(fim3);
+
+                // ── FECHAR ────────────────────────────────
+                S('btn-close').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    host.style.display = 'none';
+                });
+
+                // ── MAXIMIZAR ────────────────────────────
+                let maximized = false;
+                S('btn-maximize').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    maximized = !maximized;
+                    S('shell').classList.toggle('maximized', maximized);
+                    host.style.width = maximized ? '700px' : '420px';
+                    S('btn-maximize').textContent = maximized ? '⤡' : '⤢';
+                });
+
+                // ── DRAG ─────────────────────────────────
+                const headerEl = S('header');
+                let dragStartX = 0, dragStartY = 0, dragOrigLeft = 0, dragOrigTop = 0;
+
+                headerEl.addEventListener('pointerdown', (e) => {
+                    if (e.button !== 0) return;
+                    if (e.target.closest('.hbtn') || e.target.tagName === 'BUTTON') return;
+                    e.preventDefault();
+
+                    const rect = host.getBoundingClientRect();
+                    host.style.right  = 'auto';
+                    host.style.bottom = 'auto';
+                    host.style.left   = rect.left + 'px';
+                    host.style.top    = rect.top  + 'px';
+
+                    dragOrigLeft = rect.left;
+                    dragOrigTop  = rect.top;
+                    dragStartX   = e.clientX;
+                    dragStartY   = e.clientY;
+
+                    headerEl.setPointerCapture(e.pointerId);
+                    headerEl.classList.add('grabbing');
+                });
+
+                headerEl.addEventListener('pointermove', (e) => {
+                    if (!headerEl.hasPointerCapture(e.pointerId)) return;
+                    e.preventDefault();
+                    const dx = e.clientX - dragStartX;
+                    const dy = e.clientY - dragStartY;
+                    const maxL = window.innerWidth  - host.offsetWidth;
+                    const maxT = window.innerHeight - 50;
+                    host.style.left = Math.max(0, Math.min(maxL, dragOrigLeft + dx)) + 'px';
+                    host.style.top  = Math.max(0, Math.min(maxT, dragOrigTop  + dy)) + 'px';
+                });
+
+                const stopDrag = (e) => {
+                    if (headerEl.hasPointerCapture(e.pointerId)) headerEl.releasePointerCapture(e.pointerId);
+                    headerEl.classList.remove('grabbing');
+                };
+                headerEl.addEventListener('pointerup',     stopDrag);
+                headerEl.addEventListener('pointercancel', stopDrag);
+
+                // ── Dias da semana ────────────────────────
+                shadow.querySelectorAll('#tabela-dias input[type="checkbox"]').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        shadow.querySelector(`.qtd[data-dia="${cb.dataset.dia}"]`).disabled = !cb.checked;
+                        atualizarContador();
+                    });
+                });
+                shadow.querySelectorAll('.qtd').forEach(i => i.addEventListener('input', atualizarContador));
+                S('data-inicio').addEventListener('change', atualizarContador);
+                S('data-fim').addEventListener('change', atualizarContador);
+
+                // ── Datas a pular ─────────────────────────
+                const datasParaPular = new Set();
+                S('btn-add-pular').addEventListener('click', () => {
+                    const val = S('input-pular').value;
+                    if (!val || datasParaPular.has(val)) { S('input-pular').value = ''; return; }
+                    datasParaPular.add(val); renderTags();
+                    S('input-pular').value = ''; atualizarContador();
+                });
+
+                function renderTags() {
+                    const lista = S('lista-pular'); lista.innerHTML = '';
+                    [...datasParaPular].sort().forEach(data => {
+                        const [y,m,d] = data.split('-');
+                        const span = document.createElement('span');
+                        span.className = 'tag-pular';
+                        span.innerHTML = `${d}/${m}/${y} <button>×</button>`;
+                        span.querySelector('button').onclick = () => { datasParaPular.delete(data); renderTags(); atualizarContador(); };
+                        lista.appendChild(span);
+                    });
+                }
+
+                function atualizarContador() {
+                    const n = gerarListaDatas().length, el = S('msg-info');
+                    if (n > 0) { el.textContent = `✅ ${n} aulas no período`; el.className = 'ok'; }
+                    else       { el.textContent = '⚠️ Nenhuma aula — verifique período e dias'; el.className = 'err'; }
+                }
+
+                function gerarListaDatas() {
+                    const s = S('data-inicio').value, e = S('data-fim').value;
+                    if (!s || !e) return [];
+                    const ini = parseDateLocal(s), fim = parseDateLocal(e);
+                    if (isNaN(ini) || isNaN(fim) || ini > fim) return [];
+                    const dias = {};
+                    shadow.querySelectorAll('#tabela-dias input[type="checkbox"]:checked').forEach(cb => {
+                        const dia = +cb.dataset.dia;
+                        dias[dia] = +(shadow.querySelector(`.qtd[data-dia="${dia}"]`).value) || 1;
+                    });
+                    if (!Object.keys(dias).length) return [];
+                    const lista = [], d = new Date(ini);
+                    while (d <= fim) {
+                        const iso = toISO(d), dw = d.getDay();
+                        if (dias[dw] !== undefined && !datasParaPular.has(iso))
+                            for (let n = 1; n <= dias[dw]; n++) lista.push({ data: iso });
+                        d.setDate(d.getDate() + 1);
+                    }
+                    return lista;
+                }
+
+                // ── Pollinations IA ───────────────────────
+                async function gerarIA(tema, qtd) {
+                    const prompt = `Gere exatamente ${qtd} títulos de aulas sobre o tema: "${tema}". Retorne APENAS os títulos, um por linha, sem numeração, sem bullets.`;
+                    const r = await fetch(`https://text.pollinations.ai/${encodeURIComponent(prompt)}`, { headers: { Accept: 'text/plain' } });
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    const txt = await r.text();
+                    const t = txt.split('\n').map(l => l.replace(/^[\s\-\*\d\.\)]+/,'').trim()).filter(l => l.length > 2).slice(0, qtd);
+                    if (!t.length) throw new Error('Resposta vazia.');
+                    return t;
+                }
+
+                S('btn-gerar').addEventListener('click', async () => {
+                    const datas = gerarListaDatas();
+                    if (!datas.length) { alert('Selecione período e pelo menos um dia.'); return; }
+                    const btn = S('btn-gerar'), tema = S('ia-tema').value.trim() || 'Educação';
+                    btn.textContent = '⏳ Gerando...'; btn.disabled = true;
+                    try {
+                        const titulos = await gerarIA(tema, datas.length);
+                        montarTabela(datas.map((d,i) => ({ titulo: titulos[i]||'', data: d.data })));
+                    } catch(e) { alert(`Erro: ${e.message}`); }
+                    finally { btn.textContent = '✨ Gerar Títulos com IA'; btn.disabled = false; }
+                });
+
+                S('btn-manual').addEventListener('click', () => {
+                    const datas = gerarListaDatas();
+                    if (!datas.length) { alert('Selecione período e pelo menos um dia.'); return; }
+                    montarTabela(datas.map(d => ({ titulo: '', data: d.data })));
+                });
+
+                S('input-file').addEventListener('change', async (e) => {
+                    const file = e.target.files[0]; if (!file) return;
+                    const ext = file.name.split('.').pop().toLowerCase();
+                    try {
+                        let dados = [];
+                        if (ext === 'csv') {
+                            const txt = await file.text();
+                            dados = txt.trim().split('\n').slice(1).map(l => {
+                                const sep = l.includes(';') ? ';' : ',';
+                                const cols = l.split(sep).map(c => c.replace(/^"|"$/g,'').trim());
+                                return { titulo: cols[0]||'', data: normDate(cols[1]||'') };
+                            }).filter(d => d.titulo || d.data);
+                        } else {
+                            if (!window.XLSX) throw new Error('SheetJS não carregado ainda. Aguarde e tente novamente.');
+                            const buf = await file.arrayBuffer();
+                            const wb = XLSX.read(buf, { type:'array', cellDates:true });
+                            const ws = wb.Sheets[wb.SheetNames[0]];
+                            const rows = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
+                            for (let i = 1; i < rows.length; i++) {
+                                const [t, dRaw] = rows[i]; if (!t && !dRaw) continue;
+                                dados.push({ titulo: String(t||''), data: normDate(dRaw) });
+                            }
+                        }
+                        if (!dados.length) throw new Error('Nenhum dado encontrado.');
+                        montarTabela(dados);
+                    } catch(err) { alert(`Erro ao importar: ${err.message}`); }
+                    e.target.value = '';
+                });
+
+                S('btn-exportar').addEventListener('click', () => {
+                    const titulos = [...shadow.querySelectorAll('.row-titulo')].map(t => t.value.trim());
+                    const datas   = [...shadow.querySelectorAll('.row-data')].map(i => { const v=i.value; if(!v)return''; const[y,m,d]=v.split('-'); return`${d}/${m}/${y}`; });
+                    let csv = 'Aula,Data\n';
+                    titulos.forEach((t,i) => { csv += `"${t.replace(/"/g,'""')}","${datas[i]}"\n`; });
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv;charset=utf-8;' }));
+                    a.download = 'plano_de_aulas.csv'; a.click();
+                });
+
+                S('btn-voltar').addEventListener('click', () => {
+                    S('etapa1').classList.remove('hidden');
+                    S('etapa2').classList.add('hidden');
+                });
+
+                function montarTabela(dados) {
+                    const corpo = S('tabela-corpo'); corpo.innerHTML = '';
+                    dados.forEach(d => {
+                        const tr = document.createElement('tr'); tr.className = 'linha';
+                        tr.innerHTML = `
+                            <td><textarea class="row-titulo" rows="1">${escHtml(d.titulo)}</textarea></td>
+                            <td><input type="date" class="row-data" value="${d.data}"></td>
+                            <td style="text-align:center;vertical-align:middle">
+                                <button class="btn-del-row" title="Excluir aula">×</button>
+                            </td>`;
+                        tr.querySelector('.btn-del-row').addEventListener('click', () => {
+                            tr.remove();
+                            atualizarLabelTotal();
+                        });
+                        corpo.appendChild(tr);
+                    });
+                    shadow.querySelectorAll('textarea.row-titulo').forEach(ta => { autoResize(ta); ta.addEventListener('input', () => autoResize(ta)); });
+                    atualizarLabelTotal();
+                    S('etapa1').classList.add('hidden');
+                    S('etapa2').classList.remove('hidden');
+                }
+
+                function atualizarLabelTotal() {
+                    const n = shadow.querySelectorAll('.linha').length;
+                    S('label-total').textContent = `${n} aula${n !== 1 ? 's' : ''} gerada${n !== 1 ? 's' : ''}`;
+                }
+
+                S('btn-iniciar').addEventListener('click', async () => {
+                    const titulos = [...shadow.querySelectorAll('.row-titulo')].map(t => t.value.trim());
+                    const datas   = [...shadow.querySelectorAll('.row-data')].map(i => { const v=i.value; if(!v)return''; const[y,m,d]=v.split('-'); return`${d}/${m}/${y}`; });
+                    const btn = S('btn-iniciar');
+                    btn.disabled = true; btn.textContent = '⏳ Executando...';
+                    S('prog-wrap').classList.remove('hidden');
+                    progresso(0, titulos.length);
+                    const sleep = ms => new Promise(r => setTimeout(r, ms));
+                    const linhas = shadow.querySelectorAll('.linha');
+                    const setVal = (el, val) => {
+                        if (!el) return;
+                        const proto = el instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+                        Object.getOwnPropertyDescriptor(proto,'value').set.call(el, val);
+                        el.dispatchEvent(new Event('input',{bubbles:true}));
+                        el.dispatchEvent(new Event('change',{bubbles:true}));
+                    };
+                    for (let i = 0; i < titulos.length; i++) {
+                        linhas.forEach(l => l.classList.remove('linha-ativa'));
+                        if (linhas[i]) { linhas[i].classList.add('linha-ativa'); linhas[i].scrollIntoView({block:'nearest',behavior:'smooth'}); }
+                        const btnAdd = [...document.querySelectorAll('button')].find(b => !b.closest('#ded-host') && b.innerText.includes('Cadastrar aula'));
+                        if (!btnAdd) { S('prog-label').textContent='❌ Botão "Cadastrar aula" não encontrado.'; break; }
+                        btnAdd.click(); await sleep(1000);
+                        const tInp = document.querySelector('input[placeholder*="ítulo"]') || document.querySelector('input[type="text"]:not([readonly])');
+                        const dInp = document.getElementById('dataAula');
+                        const cInp = document.getElementById('dcConteudo');
+                        if (!tInp||!dInp||!cInp) { S('prog-label').textContent=`⚠️ Campos não encontrados (aula ${i+1}).`; break; }
+                        setVal(tInp,titulos[i]); await sleep(200);
+                        setVal(dInp,datas[i]);   await sleep(200);
+                        setVal(cInp,titulos[i]); await sleep(200);
+                        const btnSave = [...document.querySelectorAll('button')].find(b => !b.closest('#ded-host') && b.innerText.includes('Salvar'));
+                        if (btnSave) { btnSave.click(); await sleep(2000); }
+                        if (linhas[i]) { linhas[i].classList.remove('linha-ativa'); linhas[i].classList.add('linha-ok'); }
+                        progresso(i+1, titulos.length);
+                    }
+                    btn.disabled = false; btn.textContent = '🔁 Executar Novamente';
+                });
+
+                // ── Helpers ───────────────────────────────
+                function toISO(d) { return d.toISOString().split('T')[0]; }
+                function parseDateLocal(s) { const[y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+                function normDate(raw) {
+                    if (!raw) return ''; const s = String(raw);
+                    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+                    if (/^\d{2}\/\d{2}\/\d{4}$/.test(s)) { const[d,m,y]=s.split('/'); return`${y}-${m}-${d}`; }
+                    if (raw instanceof Date) return toISO(raw);
+                    if (typeof raw==='number' && window.XLSX) { const p=XLSX.SSF.parse_date_code(raw); if(p) return`${p.y}-${String(p.m).padStart(2,'0')}-${String(p.d).padStart(2,'0')}`; }
+                    return s;
+                }
+                function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+                function autoResize(el) { el.style.height='auto'; el.style.height=el.scrollHeight+'px'; }
+                function progresso(atual, total) {
+                    const p = total>0 ? Math.round((atual/total)*100) : 0;
+                    S('prog-bar').style.width = p+'%';
+                    S('prog-pct').textContent = p+'%';
+                    S('prog-label').textContent = atual<total ? `Cadastrando aula ${atual+1} de ${total}...` : `✅ ${total} aulas cadastradas!`;
+                }
+
+                // Toggle via ícone (opcional, mas mantido)
+                if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onMessage) {
+                    chrome.runtime.onMessage.addListener((msg) => {
+                        if (msg.type === 'toggle') { host.style.display = host.style.display==='none' ? '' : 'none'; return true; }
+                    });
+                }
+
+                // SheetJS para Excel
+                if (!window.XLSX) {
+                    const s = document.createElement('script');
+                    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+                    document.head.appendChild(s);
+                }
+            }
+
+            // Inicializa o widget
+            initWidget();
+        })();
+    </script>
+
+    <!-- Link "Como usar" simples -->
+    <script>
+        document.getElementById('info-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Instruções rápidas:\n\n1. No lado esquerdo, faça login no DED Mais (se necessário).\n2. No widget direito, defina período, dias da semana e quantas aulas por dia.\n3. Clique em "Gerar Títulos com IA" (ou use manual/importação).\n4. Revise as aulas na tabela e clique em "Iniciar Cadastro".\n5. O assistente preencherá automaticamente no site!');
+        });
     </script>
 </body>
 </html>
