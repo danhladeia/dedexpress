@@ -4,6 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DED Express – Chrome Extension para Professores de MG</title>
+<meta name="description" content="Automatize o lançamento de diários de aula no DED+ de Minas Gerais com um clique. A extensão Chrome que todo professor público de MG precisava. Grátis na Chrome Web Store!">
+<meta name="keywords" content="DED express, DED MG, DED Minas Gerais, extensão Chrome professor, diário escolar MG, lançamento de aulas, professor público MG, automação DED, SEEMG, educação MG">
+<meta name="author" content="DED Express">
+<meta name="robots" content="index, follow">
+<meta name="language" content="pt-BR">
+<link rel="canonical" href="https://dedexpress.com.br/">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dedexpress.com.br/">
+<meta property="og:title" content="DED Express – Automatize o DED+ de MG em 1 Clique!">
+<meta property="og:description" content="Chega de perder horas no DED+! Com a extensão DED Express, professores de MG lançam diários de aula em minutos. Instale grátis na Chrome Web Store.">
+<meta property="og:image" content="https://dedexpress.com.br/img/banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DED Express Chrome Extension – Automatize o lançamento de aulas no DED de MG">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="DED Express">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dedexpress.com.br/">
+<meta name="twitter:title" content="DED Express – Automatize o DED+ de MG em 1 Clique!">
+<meta name="twitter:description" content="Chega de perder horas no DED+! Com a extensão DED Express, professores de MG lançam diários de aula em minutos. Instale grátis na Chrome Web Store.">
+<meta name="twitter:image" content="https://dedexpress.com.br/img/banner.png">
+
+<!-- WhatsApp Preview (usa og:image) -->
+<meta property="og:image:type" content="image/png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DED Express",
+  "operatingSystem": "Chrome",
+  "applicationCategory": "EducationApplication",
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL",
+      "name": "Plano Gratuito"
+    },
+    {
+      "@type": "Offer",
+      "price": "19.90",
+      "priceCurrency": "BRL",
+      "name": "Plano Professor"
+    }
+  ],
+  "description": "Extensão Chrome que automatiza o lançamento de diários de aula no DED+ de Minas Gerais para professores da rede estadual.",
+  "url": "https://dedexpress.com.br",
+  "publisher": {
+    "@type": "Organization",
+    "name": "DED Express",
+    "sameAs": "https://www.instagram.com/ded_express/"
+  }
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -340,7 +405,7 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 25px rgba(0,0,0,0.08);
-    cursor: pointer;
+    cursor: zoom-in;
     transition: transform 0.3s, box-shadow 0.3s;
     border: 2px solid transparent;
   }
@@ -373,7 +438,7 @@
     transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.65);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -382,8 +447,8 @@
   }
   
   .video-card:hover .youtube-thumb .play-icon {
-    background: rgba(255,0,0,0.8);
-    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255,0,0,0.85);
+    transform: translate(-50%, -50%) scale(1.12);
   }
   
   .video-card .youtube-thumb .play-icon svg {
@@ -430,8 +495,8 @@
     width: 100%;
     height: 100%;
     border-radius: 14px;
+    display: block;
   }
-  
   .modal-close {
     position: fixed;
     top: 20px; right: 30px;
@@ -442,7 +507,6 @@
     line-height: 1;
     opacity: 0.8;
     transition: opacity 0.2s;
-    z-index: 1001;
   }
   .modal-close:hover { opacity: 1; }
 
@@ -747,7 +811,7 @@
     <div class="divider"></div>
   </div>
   <div class="video-grid">
-    <div class="video-card" data-video-id="O8VlSqB3Fuc" data-video-title="Como instalar o DED+ Express">
+    <div class="video-card" data-video-id="O8VlSqB3Fuc">
       <div class="youtube-thumb">
         <img src="https://img.youtube.com/vi/O8VlSqB3Fuc/maxresdefault.jpg" alt="Tutorial Instalação" onerror="this.src='https://img.youtube.com/vi/O8VlSqB3Fuc/hqdefault.jpg'">
         <div class="play-icon">
@@ -756,7 +820,7 @@
       </div>
       <h3>🔧 Tutorial 1 – Instalação da Extensão</h3>
     </div>
-    <div class="video-card" data-video-id="Ubh4bWetdv0" data-video-title="Como automatizar o lançamento de aulas no DED MG">
+    <div class="video-card" data-video-id="Ubh4bWetdv0">
       <div class="youtube-thumb">
         <img src="https://img.youtube.com/vi/Ubh4bWetdv0/maxresdefault.jpg" alt="Tutorial Lançamentos" onerror="this.src='https://img.youtube.com/vi/Ubh4bWetdv0/hqdefault.jpg'">
         <div class="play-icon">
@@ -783,7 +847,7 @@
       <ul>
         <li>Até 10 registros</li>
         <li>Preenchimento automático</li>
-              </ul>
+      </ul>
       <a href="https://chromewebstore.google.com" class="btn btn-chrome" style="width:100%; justify-content:center;">Instalar Grátis</a>
     </div>
 
@@ -800,8 +864,7 @@
       </ul>
       <a href="https://wa.me/5538991582493" class="btn btn-pix btn" target="_blank">💳 Comprar por Pix/Cartão</a>
     </div>
-
-      </div>
+  </div>
 </section>
 
 <!-- INSTAGRAM CTA -->
@@ -817,13 +880,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="ChatGPT_Image_12_de_mar__de_2026__04_35_30.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+  <img src="img/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
   <p><strong>DED Express</strong> — Chrome Extension para Professores de MG</p>
   <p>Desenvolvido com ❤️ por professor, para professor.</p>
   <p style="margin-top:12px;">
     <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado); text-decoration:none;">📷 @ded_express</a>
     &nbsp;|&nbsp;
-    <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado); text-decoration:none;"></a>
   </p>
   <p style="margin-top:16px; font-size:0.78rem; opacity:0.5;">© 2026 DED Express. Todos os direitos reservados.</p>
 </footer>
@@ -833,7 +895,7 @@
   <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- MODAL VÍDEO -->
+<!-- MODAL VÍDEO YOUTUBE -->
 <div class="modal" id="videoModal" onclick="fecharModal(event)">
   <span class="modal-close" onclick="fecharModal()">&times;</span>
   <div class="modal-content" id="modalContent">
@@ -842,44 +904,25 @@
 </div>
 
 <script>
-function abrirModalYouTube(videoId, videoTitle) {
-  const modal = document.getElementById('videoModal');
-  const iframe = document.getElementById('youtubeIframe');
-  
-  // Carregar o vídeo do YouTube com autoplay
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function fecharModal(event) {
-  if (event && event.target !== event.currentTarget && !event.target.classList.contains('modal-close')) return;
-  
-  const modal = document.getElementById('videoModal');
-  const iframe = document.getElementById('youtubeIframe');
-  
-  modal.classList.remove('active');
-  iframe.src = '';
-  document.body.style.overflow = '';
-}
-
-// Adicionar evento de clique em cada card de vídeo
 document.querySelectorAll('.video-card').forEach(card => {
   card.addEventListener('click', function() {
     const videoId = this.getAttribute('data-video-id');
-    if (videoId) {
-      abrirModalYouTube(videoId);
-    }
+    if (!videoId) return;
+    const iframe = document.getElementById('youtubeIframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    document.getElementById('videoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
   });
 });
 
-// Fechar modal com ESC
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    fecharModal();
-  }
-});
+function fecharModal(event) {
+  if (event && event.target !== event.currentTarget && !event.target.classList.contains('modal-close')) return;
+  document.getElementById('videoModal').classList.remove('active');
+  document.getElementById('youtubeIframe').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
 </script>
 </body>
 </html>
