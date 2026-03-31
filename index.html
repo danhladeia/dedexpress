@@ -1,130 +1,894 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidade — DED+ Express</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      font-size: 15px; line-height: 1.7; color: #333;
-      background: #f9fafb; padding: 40px 20px;
-    }
-    .container { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 40px 48px; box-shadow: 0 2px 16px rgba(0,0,0,.08); }
-    header { text-align: center; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb; }
-    .logo { font-size: 36px; margin-bottom: 10px; }
-    h1 { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 4px; }
-    .updated { font-size: 12px; color: #9ca3af; }
-    h2 { font-size: 16px; font-weight: 700; color: #1a73e8; margin: 28px 0 10px; }
-    p { color: #4b5563; margin-bottom: 12px; }
-    ul { padding-left: 20px; margin-bottom: 12px; }
-    li { color: #4b5563; margin-bottom: 6px; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #eff6ff; color: #1d4ed8; font-size: 12px;
-      font-weight: 600; padding: 4px 12px; border-radius: 20px;
-      border: 1px solid #bfdbfe; margin-bottom: 20px;
-    }
-    .highlight {
-      background: #f0fdf4; border: 1px solid #86efac;
-      border-radius: 8px; padding: 14px 16px; margin: 16px 0;
-      color: #166534; font-size: 13px; font-weight: 600;
-    }
-    .contact-card {
-      background: #f6f8fc; border: 1px solid #e2e6f0;
-      border-radius: 10px; padding: 16px 20px; margin-top: 12px;
-    }
-    .contact-card p { margin-bottom: 4px; color: #374151; }
-    footer { text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DED Express – Chrome Extension para Professores de MG</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #6a1fc2;
+    --roxo-escuro: #4a0e8f;
+    --roxo-light: #9b59d0;
+    --dourado: #f5b800;
+    --dourado-dark: #c99500;
+    --verde: #25d366;
+    --branco: #ffffff;
+    --cinza: #f4f0fb;
+    --texto: #2d2d2d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cinza);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ──────────────── HEADER ──────────────── */
+  header {
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 20px rgba(106,31,194,0.12);
+    border-bottom: 3px solid var(--roxo);
+  }
+
+  header .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  header .logo-wrap img {
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  header .logo-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--roxo-escuro);
+    line-height: 1.1;
+  }
+
+  header .logo-name span {
+    color: var(--dourado);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  header nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  header nav a {
+    color: var(--roxo-escuro);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  header nav a:hover { color: var(--roxo-light); }
+
+  .ig-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ig-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(221,42,123,0.4); }
+  .ig-btn svg { width: 18px; height: 18px; fill: white; }
+
+  /* ──────────────── BANNER HERO ──────────────── */
+  .banner-hero {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--roxo-escuro);
+  }
+
+  .banner-hero img {
+    width: 100%;
+    display: block;
+    max-height: 480px;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 40px;
+    background: linear-gradient(transparent, rgba(74,14,143,0.85));
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .banner-overlay a {
+    background: var(--dourado);
+    color: #000;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(245,184,0,0.5);
+  }
+  .banner-overlay a:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,184,0,0.6); }
+
+  /* ──────────────── HERO SECTION ──────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-escuro) 60%, #2a0060 100%);
+    color: white;
+    padding: 80px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(245,184,0,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 40px rgba(245,184,0,0.4);
+    margin: 0 auto 20px;
+    display: block;
+    object-fit: cover;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 30px rgba(245,184,0,0.3); }
+    50% { box-shadow: 0 0 60px rgba(245,184,0,0.6); }
+  }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--dourado);
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 640px;
+    margin: 0 auto 30px;
+    opacity: 0.92;
+    line-height: 1.6;
+  }
+
+  .counter-box {
+    background: rgba(255,255,255,0.1);
+    border: 2px dashed rgba(255,255,255,0.3);
+    padding: 20px 30px;
+    border-radius: 16px;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .counter-box strong { color: var(--dourado); font-size: 1.6rem; font-weight: 900; }
+
+  .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-chrome {
+    background: var(--dourado);
+    color: #000;
+    box-shadow: 0 4px 20px rgba(245,184,0,0.45);
+  }
+  .btn-chrome:hover { box-shadow: 0 8px 30px rgba(245,184,0,0.6); }
+
+  .btn-instagram {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white;
+    box-shadow: 0 4px 20px rgba(221,42,123,0.4);
+  }
+  .btn-instagram:hover { box-shadow: 0 8px 30px rgba(221,42,123,0.55); }
+
+  /* ──────────────── DESTAQUES ──────────────── */
+  .destaques {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    padding: 60px 20px;
+    background: var(--branco);
+  }
+
+  .destaque-card {
+    background: var(--cinza);
+    border-radius: 18px;
+    padding: 32px 26px;
+    width: 240px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(106,31,194,0.07);
+  }
+  .destaque-card:hover {
+    border-color: var(--roxo-light);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(106,31,194,0.15);
+  }
+
+  .destaque-card .icon {
+    font-size: 2.8rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .destaque-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--roxo-escuro);
+    margin-bottom: 8px;
+  }
+
+  .destaque-card p {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ──────────────── SEÇÃO TÍTULO ──────────────── */
+  .section-header {
+    text-align: center;
+    padding: 50px 20px 10px;
+  }
+
+  .section-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--roxo-escuro);
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    color: #666;
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--roxo), var(--dourado));
+    border-radius: 2px;
+    margin: 14px auto 0;
+  }
+
+  /* ──────────────── VÍDEOS ──────────────── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 40px 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .video-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+  }
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(106,31,194,0.18);
+    border-color: var(--roxo-light);
+  }
+
+  .video-card video { width: 100%; display: block; pointer-events: none; }
+  
+  .video-card .youtube-thumb {
+    width: 100%;
+    display: block;
+    position: relative;
+    background: #000;
+  }
+  
+  .video-card .youtube-thumb img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  
+  .video-card .youtube-thumb .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  
+  .video-card:hover .youtube-thumb .play-icon {
+    background: rgba(255,0,0,0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .video-card .youtube-thumb .play-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    margin-left: 4px;
+  }
+
+  .video-card h3 {
+    padding: 14px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--roxo-escuro);
+    border-top: 1px solid #f0eafa;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    width: 90%;
+    max-width: 1000px;
+    background: #000;
+    border-radius: 14px;
+    outline: none;
+    box-shadow: 0 0 60px rgba(245,184,0,0.3);
+    aspect-ratio: 16/9;
+  }
+  
+  .modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+  }
+  
+  .modal-close {
+    position: fixed;
+    top: 20px; right: 30px;
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    z-index: 1001;
+  }
+  .modal-close:hover { opacity: 1; }
+
+  /* ──────────────── PREÇOS ──────────────── */
+  .pricing-section {
+    background: white;
+    padding: 20px 20px 70px;
+  }
+
+  .pricing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 40px;
+  }
+
+  .price-card {
+    background: var(--cinza);
+    border-radius: 22px;
+    padding: 40px 30px;
+    width: 290px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .price-card.featured {
+    border-color: var(--roxo);
+    transform: scale(1.05);
+    background: white;
+    box-shadow: 0 15px 50px rgba(106,31,194,0.2);
+  }
+
+  .price-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--roxo-escuro);
+    margin-bottom: 6px;
+  }
+
+  .badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--roxo);
+    color: white;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--roxo-escuro);
+    margin: 20px 0 4px;
+    line-height: 1;
+  }
+  .price-period { font-size: 0.85rem; color: #888; margin-bottom: 20px; }
+
+  .price-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+    min-height: 140px;
+  }
+
+  .price-card li {
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .price-card li::before {
+    content: "✓";
+    color: var(--verde);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .btn-pix {
+    background: var(--verde);
+    color: white;
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+  .btn-pix:hover { box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+
+  /* ──────────────── INSTAGRAM SECTION ──────────────── */
+  .instagram-section {
+    background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo), #9b59d0);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .instagram-section::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    bottom: -100px; left: -80px;
+    border-radius: 50%;
+  }
+
+  .instagram-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .instagram-section p {
+    font-size: 1rem;
+    opacity: 0.88;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+
+  .ig-big-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 60px;
+    font-weight: 800;
+    font-size: 1.15rem;
+    text-decoration: none;
+    box-shadow: 0 6px 30px rgba(221,42,123,0.5);
+    transition: 0.3s;
+    border: 3px solid rgba(255,255,255,0.3);
+  }
+  .ig-big-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(221,42,123,0.65); }
+  .ig-big-btn svg { width: 26px; height: 26px; fill: white; }
+
+  .ig-handle {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* ──────────────── FOOTER ──────────────── */
+  footer {
+    background: #1a0030;
+    color: rgba(255,255,255,0.7);
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  footer strong { color: var(--dourado); }
+
+  footer .footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: block;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  /* ──────────────── WHATSAPP FLOAT ──────────────── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--verde);
+    color: white;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 25px rgba(37,211,102,0.5);
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.3s;
+    font-size: 1.8rem;
+  }
+  .whatsapp-float:hover { transform: scale(1.12); }
+
+  /* ──────────────── RESPONSIVE ──────────────── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.9rem; }
+    .hero p { font-size: 1rem; }
+    header nav a:not(.ig-btn) { display: none; }
+    .price-card.featured { transform: scale(1); }
+    .banner-hero img { max-height: 260px; }
+    .banner-overlay { padding: 16px 18px; }
+    .banner-overlay a { padding: 12px 22px; font-size: 0.9rem; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
 
-    <header>
-      <div class="logo">⚡</div>
-      <h1>Política de Privacidade</h1>
-      <div class="updated">DED+ Express · Atualizada em março de 2026</div>
-    </header>
-
-    <div class="badge">🔒 Extensão para o Chrome Web Store</div>
-
-    <p>Esta Política de Privacidade descreve como a extensão <strong>DED+ Express</strong> coleta, usa e protege as informações dos usuários. Ao utilizar a extensão, você concorda com os termos descritos neste documento.</p>
-
-    <h2>1. Quem somos</h2>
-    <p>O DED+ Express é uma extensão para o Google Chrome desenvolvida para auxiliar professores no cadastro automatizado de aulas no sistema DED da Secretaria de Educação do Estado de Minas Gerais (ded.educacao.mg.gov.br).</p>
-
-    <h2>2. Dados coletados</h2>
-    <p>A extensão coleta exclusivamente os seguintes dados:</p>
-    <ul>
-      <li><strong>Endereço de e-mail:</strong> utilizado para identificação e autenticação do professor no sistema. O e-mail é armazenado de forma segura no banco de dados Supabase e localmente no navegador via <code>chrome.storage.local</code>.</li>
-      <li><strong>Contador de lançamentos:</strong> número de aulas cadastradas pelo professor, usado para controle do plano gratuito (limite de 10 lançamentos).</li>
-      <li><strong>Status do plano:</strong> informação indicando se o professor adquiriu o plano Premium.</li>
-    </ul>
-
-    <div class="highlight">
-      ✅ Não coletamos senhas, dados bancários, histórico de navegação, localização, mensagens ou qualquer outro dado pessoal além do e-mail.
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo-wrap">
+    <img src="img/logo.png" alt="DED Express Logo" onerror="this.style.display='none'">
+    <div class="logo-name">
+      DED Express
+      <span>Chrome Extension</span>
     </div>
+  </a>
+  <nav>
+    <a href="#tutoriais">Tutoriais</a>
+    <a href="#precos">Preços</a>
+    <a href="https://www.instagram.com/ded_express/" target="_blank" class="ig-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </nav>
+</header>
 
-    <h2>3. Como usamos os dados</h2>
-    <p>Os dados coletados são usados exclusivamente para:</p>
-    <ul>
-      <li>Autenticar o professor e manter a sessão ativa entre usos da extensão;</li>
-      <li>Controlar o número de lançamentos gratuitos disponíveis;</li>
-      <li>Verificar se o professor adquiriu o plano Premium após pagamento;</li>
-      <li>Enviar o link de acesso (magic link) para o e-mail informado.</li>
-    </ul>
-
-    <h2>4. Compartilhamento de dados</h2>
-    <p>Os dados <strong>não são vendidos, alugados ou compartilhados</strong> com terceiros para fins comerciais. O e-mail e os dados de uso são armazenados no serviço Supabase (supabase.com), que opera em conformidade com as leis de proteção de dados aplicáveis.</p>
-    <p>O processamento de pagamentos é realizado pela plataforma Stripe (stripe.com), que recebe apenas o e-mail informado pelo professor para vinculação do pagamento. A extensão não tem acesso a dados de cartão de crédito ou informações bancárias.</p>
-
-    <h2>5. Armazenamento e segurança</h2>
-    <ul>
-      <li>Os dados são armazenados de forma segura no banco de dados Supabase, com Row Level Security (RLS) habilitado;</li>
-      <li>O e-mail é salvo localmente no navegador via <code>chrome.storage.local</code>, acessível apenas pela própria extensão;</li>
-      <li>A comunicação com o servidor utiliza conexões criptografadas (HTTPS/TLS);</li>
-      <li>Nenhum dado é transmitido para servidores além dos descritos nesta política.</li>
-    </ul>
-
-    <h2>6. Serviços externos utilizados</h2>
-    <ul>
-      <li><strong>Supabase</strong> (supabase.com) — banco de dados e autenticação;</li>
-      <li><strong>Stripe</strong> (stripe.com) — processamento de pagamento do plano Premium;</li>
-      <li><strong>Pollinations AI</strong> (text.pollinations.ai) — geração de títulos de aulas via inteligência artificial. Apenas o tema informado pelo professor é enviado; nenhum dado pessoal é transmitido.</li>
-    </ul>
-
-    <h2>7. Direitos do usuário</h2>
-    <p>O professor tem o direito de:</p>
-    <ul>
-      <li>Solicitar a exclusão de seus dados a qualquer momento;</li>
-      <li>Acessar quais dados estão armazenados em seu nome;</li>
-      <li>Revogar o acesso fazendo logout da extensão.</li>
-    </ul>
-    <p>Para exercer esses direitos, entre em contato pelo e-mail indicado na seção de contato abaixo.</p>
-
-    <h2>8. Retenção de dados</h2>
-    <p>Os dados são mantidos enquanto o professor utilizar a extensão. Após solicitação de exclusão ou inatividade por mais de 12 meses, os dados poderão ser removidos permanentemente do banco de dados.</p>
-
-    <h2>9. Cookies e rastreamento</h2>
-    <p>A extensão não utiliza cookies de rastreamento, pixels de rastreamento, fingerprinting de dispositivo ou qualquer outra tecnologia de monitoramento comportamental.</p>
-
-    <h2>10. Alterações nesta política</h2>
-    <p>Esta política pode ser atualizada periodicamente. A data da última atualização está indicada no topo deste documento. O uso continuado da extensão após alterações implica na aceitação da nova versão.</p>
-
-    <h2>11. Contato</h2>
-    <p>Para dúvidas, solicitações ou reclamações relacionadas a esta política de privacidade:</p>
-    <div class="contact-card">
-      <p><strong>DED+ Express</strong></p>
-      <p style="margin-top:8px">📧 <strong>danilodh.ladeia@gmail.com</strong></p>
-    </div>
-
-    <footer>
-      © 2026 DED+ Express · Todos os direitos reservados<br>
-      Esta política está em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)
-    </footer>
-
+<!-- BANNER PRINCIPAL -->
+<section class="banner-hero">
+  <img src="img/banner.png" alt="DED Express Chrome Extension – Automatize o lançamento de aulas no DED de MG" onerror="this.style.background='linear-gradient(135deg,#4a0e8f,#6a1fc2)'; this.style.height='350px'">
+  <div class="banner-overlay">
+    <a href="https://chromewebstore.google.com" target="_blank">
+      🚀 Instale Grátis Agora
+    </a>
   </div>
+</section>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="ChatGPT_Image_12_de_mar__de_2026__04_35_30.png" alt="Logo DED Express" class="hero-logo" onerror="this.style.display='none'">
+  <h1>Chega de perder tempo<br>no <em>DED+ de Minas Gerais!</em></h1>
+  <p>Automatize o lançamento de diários de aula com um clique. A extensão que todo professor de MG precisava!</p>
+
+  <div class="counter-box">
+    ⏱️ Cada professor gasta em média <strong>3–5h</strong>/semana no DED.<br>
+    Com a DED Express, isso cai para <strong>minutos</strong>. Recupere seu tempo!
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://chromewebstore.google.com" target="_blank" class="btn btn-chrome">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+      Instale Grátis na Chrome Web Store
+    </a>
+    <a href="https://www.instagram.com/ded_express/" target="_blank" class="btn btn-instagram">
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @ded_express no Instagram
+    </a>
+  </div>
+</section>
+
+<!-- DESTAQUES -->
+<section>
+  <div class="section-header">
+    <h2>Por que usar a DED Express?</h2>
+    <p>Funcionalidades pensadas para a realidade do professor público de MG</p>
+    <div class="divider"></div>
+  </div>
+  <div class="destaques">
+    <div class="destaque-card">
+      <span class="icon">⚡</span>
+      <h3>Preenchimento em 1 Clique</h3>
+      <p>Lance múltiplas aulas de uma vez, sem repetição manual de dados.</p>
+    </div>
+    <div class="destaque-card">
+      <span class="icon">📅</span>
+      <h3>Organização Semanal</h3>
+      <p>Configure sua semana letiva uma vez e reaproveite toda semana.</p>
+    </div>
+    <div class="destaque-card">
+      <span class="icon">🔒</span>
+      <h3>Seguro e Oficial</h3>
+      <p>Publicado na Chrome Web Store com revisão do Google.</p>
+    </div>
+    <div class="destaque-card">
+      <span class="icon">🧑‍🏫</span>
+      <h3>Feito por Professor</h3>
+      <p>Desenvolvido por quem vive a realidade das escolas estaduais de MG.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TUTORIAIS -->
+<section id="tutoriais">
+  <div class="section-header">
+    <h2>📹 Tutoriais em Vídeo</h2>
+    <p>Aprenda a usar a DED Express em poucos minutos</p>
+    <div class="divider"></div>
+  </div>
+  <div class="video-grid">
+    <div class="video-card" data-video-id="dQw4w9WgXcQ" data-video-title="Tutorial 1 – Instalação">
+      <div class="youtube-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Tutorial 1" onerror="this.src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg'">
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <h3>🎯 Tutorial 1 – Instalação</h3>
+    </div>
+    <div class="video-card" data-video-id="9bZkp7q19f0" data-video-title="Tutorial 2 – Primeiro Lançamento">
+      <div class="youtube-thumb">
+        <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Tutorial 2" onerror="this.src='https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg'">
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <h3>⚡ Tutorial 2 – Primeiro Lançamento</h3>
+    </div>
+    <div class="video-card" data-video-id="Ubh4bWetdv0" data-video-title="Tutorial 3 – Lançamento em Massa">
+      <div class="youtube-thumb">
+        <img src="https://img.youtube.com/vi/Ubh4bWetdv0/maxresdefault.jpg" alt="Tutorial 3" onerror="this.src='https://img.youtube.com/vi/Ubh4bWetdv0/hqdefault.jpg'">
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <h3>🚀 Tutorial 3 – Lançamento em Massa</h3>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section id="precos" class="pricing-section">
+  <div class="section-header">
+    <h2>💳 Planos e Preços</h2>
+    <p>Comece grátis, atualize quando precisar</p>
+    <div class="divider"></div>
+  </div>
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Gratuito</h3>
+      <div class="price">R$0</div>
+      <div class="price-period">para sempre</div>
+      <ul>
+        <li>Até 10 registros</li>
+        <li>Preenchimento automático</li>
+              </ul>
+      <a href="https://chromewebstore.google.com" class="btn btn-chrome" style="width:100%; justify-content:center;">Instalar Grátis</a>
+    </div>
+
+    <div class="price-card featured">
+      <span class="badge">✨ Preço promocional de lançamento</span>
+      <h3>Professor</h3>
+      <div class="price">R$19<sup style="font-size:1.2rem">,90</sup></div>
+      <div class="price-period">pagamento único anual</div>
+      <ul>
+        <li>Registros ilimitados</li>
+        <li>Preenchimento em massa</li>
+        <li>Organização semanal</li>
+        <li>Atualizações por 1 ano</li>
+      </ul>
+      <a href="https://wa.me/5538991582493" class="btn btn-pix btn" target="_blank">💳 Comprar por Pix/Cartão</a>
+    </div>
+
+      </div>
+</section>
+
+<!-- INSTAGRAM CTA -->
+<section class="instagram-section">
+  <h2>📲 Siga no Instagram!</h2>
+  <p>Dicas, tutoriais exclusivos e novidades da DED Express direto no seu feed.</p>
+  <a href="https://www.instagram.com/ded_express/" target="_blank" class="ig-big-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    Seguir @ded_express
+  </a>
+  <span class="ig-handle">instagram.com/ded_express</span>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="ChatGPT_Image_12_de_mar__de_2026__04_35_30.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+  <p><strong>DED Express</strong> — Chrome Extension para Professores de MG</p>
+  <p>Desenvolvido com ❤️ por professor, para professor.</p>
+  <p style="margin-top:12px;">
+    <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado); text-decoration:none;">📷 @ded_express</a>
+    &nbsp;|&nbsp;
+    <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado); text-decoration:none;"></a>
+  </p>
+  <p style="margin-top:16px; font-size:0.78rem; opacity:0.5;">© 2026 DED Express. Todos os direitos reservados.</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5538991582493" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- MODAL VÍDEO -->
+<div class="modal" id="videoModal" onclick="fecharModal(event)">
+  <span class="modal-close" onclick="fecharModal()">&times;</span>
+  <div class="modal-content" id="modalContent">
+    <iframe id="youtubeIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+function abrirModalYouTube(videoId, videoTitle) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('youtubeIframe');
+  
+  // Carregar o vídeo do YouTube com autoplay
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal(event) {
+  if (event && event.target !== event.currentTarget && !event.target.classList.contains('modal-close')) return;
+  
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('youtubeIframe');
+  
+  modal.classList.remove('active');
+  iframe.src = '';
+  document.body.style.overflow = '';
+}
+
+// Adicionar evento de clique em cada card de vídeo
+document.querySelectorAll('.video-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const videoId = this.getAttribute('data-video-id');
+    if (videoId) {
+      abrirModalYouTube(videoId);
+    }
+  });
+});
+
+// Fechar modal com ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    fecharModal();
+  }
+});
+</script>
 </body>
 </html>
