@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial – DED Express</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #6a1fc2;
+    --roxo-escuro: #4a0e8f;
+    --roxo-light: #9b59d0;
+    --dourado: #f5b800;
+    --dourado-dark: #c99500;
+    --verde: #25d366;
+    --branco: #ffffff;
+    --cinza: #f4f0fb;
+    --texto: #2d2d2d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cinza); color: var(--texto); overflow-x: hidden; }
+
+  /* HEADER */
+  header {
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 20px rgba(106,31,194,0.12);
+    border-bottom: 3px solid var(--roxo);
+  }
+  header .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  header .logo-wrap img { height: 54px; border-radius: 50%; object-fit: cover; }
+  header .logo-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--roxo-escuro); line-height: 1.1; }
+  header .logo-name span { color: var(--dourado); display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  header nav { display: flex; align-items: center; gap: 18px; }
+  header nav a { color: var(--roxo-escuro); text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: color 0.2s; }
+  header nav a:hover { color: var(--roxo-light); }
+  .ig-btn {
+    display: flex; align-items: center; gap: 7px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white !important; padding: 8px 16px; border-radius: 25px;
+    font-weight: 700 !important; font-size: 0.85rem !important;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ig-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(221,42,123,0.4); }
+  .ig-btn svg { width: 18px; height: 18px; fill: white; }
+
+  /* HERO TUTORIAL */
+  .hero-tutorial {
+    background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-escuro) 60%, #2a0060 100%);
+    color: white;
+    padding: 70px 20px 55px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-tutorial::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,184,0,0.13) 0%, transparent 70%);
+    top: -80px; right: -80px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-tutorial::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(245,184,0,0.08) 0%, transparent 70%);
+    bottom: -60px; left: -40px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,184,0,0.15);
+    border: 2px dashed rgba(245,184,0,0.4);
+    padding: 7px 20px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--dourado);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge .dot { width: 7px; height: 7px; background: var(--dourado); border-radius: 50%; animation: blink 1.8s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .hero-tutorial h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+  .hero-tutorial h1 em { font-style: normal; color: var(--dourado); }
+  .hero-tutorial p { font-size: 1.05rem; max-width: 580px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.65; }
+  .steps-overview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .step-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  /* INDEX NAV */
+  .index-nav {
+    background: white;
+    border-bottom: 2px solid #ede8f9;
+    padding: 14px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    align-items: center;
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+  }
+  .index-nav .label { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800; color: var(--roxo); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 6px; }
+  .index-nav a { font-size: 13px; color: #666; text-decoration: none; font-weight: 600; transition: color 0.2s; white-space: nowrap; }
+  .index-nav a:hover { color: var(--roxo); }
+
+  /* CONTAINER */
+  .container { max-width: 880px; margin: 0 auto; padding: 60px 24px 100px; }
+
+  /* STEP */
+  .step { margin-bottom: 65px; }
+
+  .step-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
+  .step-num {
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 22px;
+    color: white;
+  }
+  .step-num.roxo { background: linear-gradient(135deg, var(--roxo), var(--roxo-light)); box-shadow: 0 4px 20px rgba(106,31,194,0.35); }
+  .step-num.dourado { background: linear-gradient(135deg, #d97706, var(--dourado)); box-shadow: 0 4px 20px rgba(245,184,0,0.4); }
+  .step-num.verde { background: linear-gradient(135deg, #059669, var(--verde)); box-shadow: 0 4px 20px rgba(37,211,102,0.35); }
+  .step-num.escuro { background: linear-gradient(135deg, #2a0060, var(--roxo-escuro)); box-shadow: 0 4px 20px rgba(74,14,143,0.4); }
+  .step-num.light { background: linear-gradient(135deg, var(--roxo-light), #c084fc); box-shadow: 0 4px 20px rgba(155,89,208,0.4); }
+  .step-num.gold2 { background: linear-gradient(135deg, #b45309, #f59e0b); box-shadow: 0 4px 20px rgba(245,158,11,0.4); }
+  .step-num.teal { background: linear-gradient(135deg, #0f766e, #14b8a6); box-shadow: 0 4px 20px rgba(20,184,166,0.35); }
+
+  .step-meta { flex: 1; }
+  .step-tag { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--roxo); margin-bottom: 4px; }
+  .step h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800; color: var(--roxo-escuro); line-height: 1.3; }
+
+  /* SCREENSHOT */
+  .screenshot {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #ede8f9;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 6px 25px rgba(106,31,194,0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .screenshot:hover { box-shadow: 0 12px 35px rgba(106,31,194,0.18); transform: translateY(-2px); }
+  .screenshot-bar {
+    background: linear-gradient(90deg, var(--roxo-escuro), var(--roxo));
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dots { display: flex; gap: 6px; }
+  .dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .dots span:nth-child(1) { background: #ef4444; }
+  .dots span:nth-child(2) { background: var(--dourado); }
+  .dots span:nth-child(3) { background: var(--verde); }
+  .bar-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-left: 6px; font-family: 'Nunito', sans-serif; font-weight: 600; }
+  .screenshot img {
+    width: 100%; height: auto; display: block;
+    min-height: 220px; object-fit: cover; background: #f4f0fb;
+  }
+  .screenshot-caption {
+    background: var(--cinza);
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #777;
+    border-top: 1px solid #ede8f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+  .screenshot-caption::before { content: '📸'; font-size: 14px; }
+
+  /* BODY TEXT */
+  .step-body { color: #444; font-size: 15px; margin-bottom: 18px; line-height: 1.75; }
+  .step-body p { margin-bottom: 10px; }
+  .step-body strong { color: var(--roxo-escuro); }
+
+  /* CALLOUT */
+  .callout {
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    border-left: 4px solid;
+  }
+  .callout.info { background: rgba(106,31,194,0.07); border-color: var(--roxo-light); }
+  .callout.tip { background: rgba(37,211,102,0.08); border-color: var(--verde); }
+  .callout.warn { background: rgba(245,184,0,0.1); border-color: var(--dourado); }
+  .callout.ai { background: rgba(74,14,143,0.08); border-color: var(--roxo-escuro); }
+  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 14px; color: #444; font-weight: 600; }
+  .callout-text strong { color: var(--roxo-escuro); }
+
+  /* STEP LIST */
+  .step-list { list-style: none; margin: 12px 0 18px; display: flex; flex-direction: column; gap: 10px; }
+  .step-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #444; font-weight: 600; }
+  .step-list li .num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-light));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px; font-weight: 800;
+    color: white;
+  }
+
+  /* COMPARE */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 22px 0; }
+  @media (max-width:580px) { .compare { grid-template-columns: 1fr; } }
+  .compare-card { border-radius: 16px; padding: 22px; border: 2px solid; }
+  .compare-card.manual { background: rgba(37,211,102,0.06); border-color: rgba(37,211,102,0.3); }
+  .compare-card.ai { background: rgba(106,31,194,0.07); border-color: rgba(106,31,194,0.25); }
+  .compare-card h4 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .compare-card.manual h4 { color: #059669; }
+  .compare-card.ai h4 { color: var(--roxo); }
+  .compare-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .compare-card ul li { font-size: 13px; color: #555; display: flex; gap: 8px; align-items: flex-start; font-weight: 600; }
+  .compare-card ul li::before { content: '→'; opacity: 0.5; flex-shrink: 0; }
+
+  /* DIVIDER */
+  .divider-line {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--roxo-light), transparent);
+    margin: 60px 0;
+    border-radius: 2px;
+  }
+
+  /* SECTION TITLE */
+  .section-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: #999;
+    margin-bottom: 40px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before, .section-label::after {
+    content: ''; flex: 1; height: 2px;
+    background: linear-gradient(90deg, transparent, #ede8f9, transparent);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1a0030;
+    color: rgba(255,255,255,0.7);
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+  footer strong { color: var(--dourado); }
+  footer .footer-logo { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 14px; display: block; border: 2px solid rgba(255,255,255,0.2); }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--verde); color: white;
+    width: 62px; height: 62px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 6px 25px rgba(37,211,102,0.5);
+    text-decoration: none; z-index: 1000; transition: transform 0.3s;
+    font-size: 1.8rem;
+  }
+  .whatsapp-float:hover { transform: scale(1.12); }
+
+  @media (max-width:768px) {
+    header nav a:not(.ig-btn) { display: none; }
+    .index-nav { top: 77px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo-wrap">
+    <img src="img/logo.png" alt="DED Express Logo" onerror="this.style.display='none'">
+    <div class="logo-name">DED Express <span>Chrome Extension</span></div>
+  </a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="index.html#precos">Preços</a>
+    <a href="https://www.instagram.com/ded_express/" target="_blank" class="ig-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-tutorial">
+  <div class="hero-badge"><span class="dot"></span> Guia Completo de Uso</div>
+  <h1>Tutorial <em>DED Express</em><br>Passo a Passo</h1>
+  <p>Do zero ao lançamento completo: aprenda a registrar suas aulas no DED+ de MG com a extensão Chrome — pelo método manual ou usando a Inteligência Artificial.</p>
+  <div class="steps-overview">
+    <span class="step-pill">📂 Abrir o Diário</span>
+    <span class="step-pill">👩‍🏫 Selecionar Turma</span>
+    <span class="step-pill">📋 Seção de Aulas</span>
+    <span class="step-pill">🤖 Ativar Extensão</span>
+    <span class="step-pill">✏️ Método Manual</span>
+    <span class="step-pill">✨ Método IA</span>
+    <span class="step-pill">✅ Conclusão</span>
+  </div>
+</section>
+
+<!-- INDEX NAV -->
+<div class="index-nav">
+  <span class="label">Etapas</span>
+  <a href="#passo1">1. Abrir Diário</a>
+  <a href="#passo2">2. Selecionar Turma</a>
+  <a href="#passo3">3. Aulas</a>
+  <a href="#passo4">4. Ativar Extensão</a>
+  <a href="#passo5">5. Manual</a>
+  <a href="#passo6">6. Com IA</a>
+  <a href="#passo7">7. Conclusão</a>
+</div>
+
+<div class="container">
+
+  <!-- PASSO 1 -->
+  <div class="step" id="passo1">
+    <div class="step-header">
+      <div class="step-num roxo">1</div>
+      <div class="step-meta">
+        <div class="step-tag">Início</div>
+        <h2>Abrir o Diário no Sistema DED+</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">ded.educacao.mg.gov.br — Painel Principal</span></div>
+      <img src="img/tutoriais/img1.png" alt="Tela inicial do DED+">
+      <div class="screenshot-caption">Tela inicial do portal DED+ após o login</div>
+    </div>
+    <div class="step-body">
+      <p>Acesse o portal <strong>DED+</strong> pelo navegador Chrome com a extensão já instalada. Faça login com suas credenciais da Rede Estadual de MG.</p>
+      <p>No painel principal, localize o menu lateral e clique em <strong>"Diário de Classe"</strong> para exibir todas as turmas vinculadas ao seu usuário.</p>
+    </div>
+    <div class="callout info">
+      <span class="callout-icon">ℹ️</span>
+      <div class="callout-text"><strong>Atenção:</strong> A DED Express só funciona no <strong>Google Chrome</strong>. Certifique-se de que a extensão está ativa antes de começar — o ícone deve aparecer na barra do navegador.</div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 2 -->
+  <div class="step" id="passo2">
+    <div class="step-header">
+      <div class="step-num dourado">2</div>
+      <div class="step-meta">
+        <div class="step-tag">Seleção</div>
+        <h2>Selecionar a Turma</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Lista de Turmas</span></div>
+      <img src="img/tutoriais/img2.png" alt="Seleção de turma">
+      <div class="screenshot-caption">Lista de turmas vinculadas ao professor</div>
+    </div>
+    <div class="step-body">
+      <p>Na lista de diários, suas turmas aparecem organizadas por <strong>componente curricular</strong> e <strong>série/ano</strong>. Clique na turma desejada para abrir o diário correspondente.</p>
+    </div>
+    <ul class="step-list">
+      <li><span class="num">1</span> Localize a turma pelo nome ou série</li>
+      <li><span class="num">2</span> Clique no nome da turma para entrar no diário</li>
+      <li><span class="num">3</span> Aguarde o carregamento completo da página</li>
+    </ul>
+    <div class="callout tip">
+      <span class="callout-icon">✅</span>
+      <div class="callout-text"><strong>Dica:</strong> Use o filtro por <strong>período/bimestre</strong> para localizar a turma mais rapidamente quando houver muitos registros.</div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 3 -->
+  <div class="step" id="passo3">
+    <div class="step-header">
+      <div class="step-num verde">3</div>
+      <div class="step-meta">
+        <div class="step-tag">Navegação</div>
+        <h2>Acessar a Seção de Aulas</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Diário da Turma</span></div>
+      <img src="img/tutoriais/img3.png" alt="Seção de aulas">
+      <div class="screenshot-caption">Dentro do diário — aba "Aulas" selecionada</div>
+    </div>
+    <div class="step-body">
+      <p>Dentro do diário da turma, localize as abas disponíveis no topo da página. Clique em <strong>"Aulas"</strong> para acessar o registro de conteúdos e frequência.</p>
+      <p>A tela exibirá o calendário com as datas previstas e os campos de conteúdo programático para preenchimento.</p>
+    </div>
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-text"><strong>Importante:</strong> Antes de continuar, verifique se o <strong>bimestre correto</strong> está selecionado. Um registro no bimestre errado pode gerar inconsistências no sistema.</div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 4 -->
+  <div class="step" id="passo4">
+    <div class="step-header">
+      <div class="step-num escuro">4</div>
+      <div class="step-meta">
+        <div class="step-tag">Extensão</div>
+        <h2>Ativar a DED Express</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">Chrome — Painel da Extensão DED Express</span></div>
+      <img src="img/tutoriais/img4.png" alt="Painel da extensão">
+      <div class="screenshot-caption">Clique no ícone da extensão na barra do Chrome para abrir o painel</div>
+    </div>
+    <div class="step-body">
+      <p>Com a aba de Aulas aberta no DED+, clique no ícone da <strong>DED Express</strong> na barra de extensões do Chrome (canto superior direito).</p>
+      <p>O painel da extensão abrirá sobre a página. No primeiro acesso, pode ser solicitado o <strong>login com seu e-mail</strong> para validar sua licença.</p>
+    </div>
+    <ul class="step-list">
+      <li><span class="num">1</span> Clique no ícone 🟣 da DED Express no Chrome</li>
+      <li><span class="num">2</span> Faça login caso solicitado (e-mail + código)</li>
+      <li><span class="num">3</span> O painel se abrirá automaticamente</li>
+      <li><span class="num">4</span> A extensão detectará a turma aberta no DED+</li>
+    </ul>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- COMPARATIVO -->
+  <div class="section-label">Escolha seu método de lançamento</div>
+  <div class="compare">
+    <div class="compare-card manual">
+      <h4>✏️ Método Manual</h4>
+      <ul>
+        <li>Você digita o conteúdo de cada aula</li>
+        <li>Controle total sobre o texto registrado</li>
+        <li>Ideal para registros específicos</li>
+        <li>Indicado para poucos lançamentos</li>
+      </ul>
+    </div>
+    <div class="compare-card ai">
+      <h4>✨ Método IA</h4>
+      <ul>
+        <li>IA gera o conteúdo automaticamente</li>
+        <li>Você revisa e confirma antes de salvar</li>
+        <li>Ideal para lançamentos em lote</li>
+        <li>Economiza até 80% do tempo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 5 — MANUAL -->
+  <div class="step" id="passo5">
+    <div class="step-header">
+      <div class="step-num light">5</div>
+      <div class="step-meta">
+        <div class="step-tag">Método Manual</div>
+        <h2>Lançamento Manual de Aulas</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Painel Manual</span></div>
+      <img src="img/tutoriais/img5.png" alt="Modo manual">
+      <div class="screenshot-caption">Painel em modo manual — campos de conteúdo editáveis por aula</div>
+    </div>
+    <div class="step-body">
+      <p>No painel da extensão, selecione a aba <strong>"Manual"</strong>. As aulas aparecerão listadas com as respectivas datas.</p>
+      <p>Para cada aula, clique no campo de <strong>conteúdo programático</strong> e digiteo texto. Em seguida, marque a <strong>frequência dos alunos</strong>.</p>
+    </div>
+    <ul class="step-list">
+      <li><span class="num">1</span> Selecione a aba <strong>"Manual"</strong> no painel</li>
+      <li><span class="num">2</span> Escolha a data/aula que deseja registrar</li>
+      <li><span class="num">3</span> Digite o conteúdo programático no campo indicado</li>
+      <li><span class="num">4</span> Preencha a frequência (presença/ausência)</li>
+      <li><span class="num">5</span> Clique em <strong>"Salvar Aula"</strong> para gravar</li>
+      <li><span class="num">6</span> Repita para as demais aulas do período</li>
+    </ul>
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <div class="callout-text"><strong>Dica:</strong> Use a tecla <strong>Tab</strong> para navegar rapidamente entre os campos sem usar o mouse.</div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Campo de Conteúdo Preenchido</span></div>
+      <img src="img/tutoriais/img6.png" alt="Conteúdo preenchido">
+      <div class="screenshot-caption">Conteúdo preenchido manualmente, pronto para salvar</div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 6 — IA -->
+  <div class="step" id="passo6">
+    <div class="step-header">
+      <div class="step-num gold2">6</div>
+      <div class="step-meta">
+        <div class="step-tag">Método IA</div>
+        <h2>Lançamento Automático com Inteligência Artificial</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Painel IA</span></div>
+      <img src="img/tutoriais/img7.png" alt="Modo IA">
+      <div class="screenshot-caption">Campo de descrição do tema — a IA gera os conteúdos automaticamente</div>
+    </div>
+    <div class="step-body">
+      <p>No painel da extensão, clique na aba <strong>"Usar IA"</strong>. Um campo de texto solicitará uma descrição do conteúdo trabalhado nas aulas.</p>
+      <p>Escreva algo como <em>"Jogos coletivos e regras do futsal"</em> e a IA criará automaticamente os conteúdos para todas as aulas do período selecionado.</p>
+    </div>
+    <ul class="step-list">
+      <li><span class="num">1</span> Clique na aba <strong>"Usar IA"</strong> no painel</li>
+      <li><span class="num">2</span> Digite um tema ou descrição geral do conteúdo</li>
+      <li><span class="num">3</span> Selecione o intervalo de datas (ou deixe o padrão)</li>
+      <li><span class="num">4</span> Clique em <strong>"Gerar com IA"</strong> e aguarde</li>
+      <li><span class="num">5</span> Revise os textos sugeridos pela IA</li>
+      <li><span class="num">6</span> Edite pontualmente se necessário</li>
+      <li><span class="num">7</span> Clique em <strong>"Lançar Tudo"</strong> para salvar todas as aulas</li>
+    </ul>
+    <div class="callout ai">
+      <span class="callout-icon">✨</span>
+      <div class="callout-text"><strong>Como a IA funciona:</strong> O assistente usa o componente curricular, a série da turma e o tema fornecido para criar conteúdos variados, coerentes e alinhados à BNCC. Você sempre revisa antes de confirmar.</div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Conteúdos Gerados pela IA</span></div>
+      <img src="img/tutoriais/img8.png" alt="Conteúdos gerados pela IA">
+      <div class="screenshot-caption">Conteúdos gerados — revise antes de confirmar o lançamento</div>
+    </div>
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-text"><strong>Revisão obrigatória:</strong> Sempre leia os conteúdos gerados antes de confirmar. A IA pode sugerir termos que precisam de ajuste para a realidade da sua turma.</div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PASSO 7 -->
+  <div class="step" id="passo7">
+    <div class="step-header">
+      <div class="step-num teal">7</div>
+      <div class="step-meta">
+        <div class="step-tag">Conclusão</div>
+        <h2>Revisão Final e Conclusão dos Lançamentos</h2>
+      </div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Lançamentos Concluídos</span></div>
+      <img src="img/tutoriais/img9.png" alt="Lançamentos concluídos">
+      <div class="screenshot-caption">Confirmação de lançamento — todos os registros salvos com sucesso</div>
+    </div>
+    <div class="step-body">
+      <p>Após salvar (manual ou via IA), o DED+ exibirá uma <strong>confirmação visual</strong> para cada aula registrada. A extensão também mostrará um resumo dos lançamentos.</p>
+      <p>Verifique se todas as aulas aparecem com o status <strong>"Registrado"</strong> antes de fechar o diário. Em caso de erro, use o botão <strong>"Retentar"</strong> na extensão.</p>
+    </div>
+    <ul class="step-list">
+      <li><span class="num">1</span> Confirme que todas as aulas estão marcadas como "Salvo"</li>
+      <li><span class="num">2</span> Verifique a frequência registrada para cada data</li>
+      <li><span class="num">3</span> Em caso de erro, clique em "Retentar" na extensão</li>
+      <li><span class="num">4</span> Feche o painel da extensão quando concluir</li>
+      <li><span class="num">5</span> Repita o processo para outras turmas se necessário</li>
+    </ul>
+    <div class="callout tip">
+      <span class="callout-icon">🎉</span>
+      <div class="callout-text"><strong>Pronto!</strong> Seus lançamentos estão concluídos. A DED Express registrou tudo diretamente no DED+ sem que você precisasse preencher campo por campo manualmente!</div>
+    </div>
+    <div class="screenshot">
+      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Resumo Final</span></div>
+      <img src="img/tutoriais/img10.png" alt="Resumo final">
+      <div class="screenshot-caption">Resumo dos lançamentos exibido pela extensão após a conclusão</div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div style="text-align:center; margin-top:40px; padding:40px 30px; background:linear-gradient(135deg,var(--roxo-escuro),var(--roxo)); border-radius:22px; color:white;">
+      <div style="font-size:2.5rem; margin-bottom:12px;">🚀</div>
+      <h3 style="font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; margin-bottom:10px;">Ainda não tem a DED Express?</h3>
+      <p style="opacity:0.88; margin-bottom:22px; font-size:0.95rem;">Instale grátis na Chrome Web Store e comece a economizar horas toda semana!</p>
+      <a href="https://chromewebstore.google.com" target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:var(--dourado);color:#000;padding:14px 30px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;box-shadow:0 4px 20px rgba(245,184,0,0.5);transition:0.3s;">
+        ⚡ Instalar Grátis Agora
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="img/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+  <p><strong>DED Express</strong> — Chrome Extension para Professores de MG</p>
+  <p>Desenvolvido com ❤️ por professor, para professor.</p>
+  <p style="margin-top:12px;">
+    <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado);text-decoration:none;">📷 @ded_express</a>
+  </p>
+  <p style="margin-top:16px;font-size:0.78rem;opacity:0.5;">© 2026 DED Express. Todos os direitos reservados.</p>
+</footer>
+
+<a href="https://wa.me/5538991582493" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>

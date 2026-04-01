@@ -716,6 +716,272 @@
     .banner-overlay { padding: 16px 18px; }
     .banner-overlay a { padding: 12px 22px; font-size: 0.9rem; }
   }
+
+  
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Poppins:wght@700;800&display=swap');
+  .tutorial-banner {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    padding: 0 30px;
+  }
+  .tutorial-banner-inner {
+    background: linear-gradient(135deg, #4a0e8f 0%, #6a1fc2 55%, #9b59d0 100%);
+    border-radius: 20px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 35px rgba(106,31,194,0.3);
+    border: 2px solid rgba(245,184,0,0.25);
+  }
+  .tutorial-banner-inner::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(245,184,0,0.12) 0%, transparent 70%);
+    top: -80px; right: 50px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .tutorial-banner-inner::after {
+    content: '📖';
+    position: absolute;
+    font-size: 7rem;
+    right: 180px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-10deg);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .tutorial-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 1;
+  }
+  .tutorial-banner-icon {
+    width: 58px; height: 58px;
+    background: rgba(245,184,0,0.18);
+    border: 2px dashed rgba(245,184,0,0.5);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .tutorial-banner-text {}
+  .tutorial-banner-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #f5b800;
+    margin-bottom: 4px;
+  }
+  .tutorial-banner-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .tutorial-banner-sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+  }
+  .tutorial-banner-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    z-index: 1;
+    flex: 1;
+    justify-content: center;
+  }
+  .tutorial-banner-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 5px 13px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+  }
+  .tutorial-banner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: #f5b800;
+    color: #000;
+    padding: 14px 26px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(245,184,0,0.45);
+    transition: transform 0.25s, box-shadow 0.25s;
+    flex-shrink: 0;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  .tutorial-banner-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,184,0,0.6); }
+  @media (max-width: 768px) {
+    .tutorial-banner-inner { flex-direction: column; text-align: center; padding: 24px 22px; }
+    .tutorial-banner-left { flex-direction: column; align-items: center; }
+    .tutorial-banner-pills { justify-content: center; }
+    .tutorial-banner-inner::after { display: none; }
+    .tutorial-banner-btn { width: 100%; justify-content: center; }
+  }
+ @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Poppins:wght@700;800&display=swap');
+
+  .suporte-banner {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    padding: 0 30px;
+  }
+  .suporte-banner-inner {
+    background: white;
+    border-radius: 20px;
+    padding: 26px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    border: 2px solid #ede8f9;
+    box-shadow: 0 6px 30px rgba(106,31,194,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .suporte-banner-inner::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #6a1fc2, #f5b800);
+    border-radius: 20px 0 0 20px;
+  }
+  .suporte-banner-inner::after {
+    content: '❓';
+    position: absolute;
+    font-size: 8rem;
+    right: 220px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .suporte-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 1;
+  }
+  .suporte-banner-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, rgba(106,31,194,0.1), rgba(155,89,208,0.15));
+    border: 2px solid rgba(106,31,194,0.2);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    flex-shrink: 0;
+  }
+  .suporte-banner-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #6a1fc2;
+    margin-bottom: 3px;
+  }
+  .suporte-banner-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem; font-weight: 800;
+    color: #4a0e8f;
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+  .suporte-banner-sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.83rem; color: #777; font-weight: 600;
+  }
+
+  .suporte-banner-chips {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    z-index: 1; flex: 1; justify-content: center;
+  }
+  .suporte-chip {
+    display: flex; align-items: center; gap: 6px;
+    background: #f4f0fb;
+    border: 1px solid #ede8f9;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: #3d2060;
+    white-space: nowrap;
+  }
+  .suporte-chip .chip-dot {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  .suporte-chip .chip-dot.roxo { background: #6a1fc2; }
+  .suporte-chip .chip-dot.dourado { background: #f5b800; }
+  .suporte-chip .chip-dot.verde { background: #25d366; }
+  .suporte-chip .chip-dot.azul { background: #3b82f6; }
+
+  .suporte-banner-actions {
+    display: flex; flex-direction: column; gap: 8px;
+    z-index: 1; flex-shrink: 0;
+  }
+  .suporte-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #4a0e8f, #6a1fc2);
+    color: white;
+    padding: 13px 22px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 0.88rem;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(106,31,194,0.35);
+    transition: transform 0.25s, box-shadow 0.25s;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .suporte-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(106,31,194,0.45); }
+
+  .suporte-btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25d366;
+    color: white;
+    padding: 11px 22px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 0.85rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+    transition: transform 0.25s, box-shadow 0.25s;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  .suporte-btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.45); }
+
+  @media (max-width: 768px) {
+    .suporte-banner-inner { flex-direction: column; text-align: center; padding: 24px 20px; }
+    .suporte-banner-left { flex-direction: column; align-items: center; }
+    .suporte-banner-chips { justify-content: center; }
+    .suporte-banner-inner::after { display: none; }
+    .suporte-banner-actions { width: 100%; }
+    .suporte-btn-primary, .suporte-btn-secondary { width: 100%; }
+  }
+
+
 </style>
 </head>
 <body>
@@ -832,6 +1098,28 @@
   </div>
 </section>
 
+<div class="tutorial-banner">
+  <div class="tutorial-banner-inner">
+    <div class="tutorial-banner-left">
+      <div class="tutorial-banner-icon">📋</div>
+      <div class="tutorial-banner-text">
+        <div class="tutorial-banner-eyebrow">Guia Completo · Passo a Passo</div>
+        <div class="tutorial-banner-title">Tutorial DED Express</div>
+        <div class="tutorial-banner-sub">Do zero ao lançamento — Manual e com IA</div>
+      </div>
+    </div>
+    <div class="tutorial-banner-pills">
+      <span class="tutorial-banner-pill">📂 Abrir Diário</span>
+      <span class="tutorial-banner-pill">👩‍🏫 Selecionar Turma</span>
+      <span class="tutorial-banner-pill">✏️ Método Manual</span>
+      <span class="tutorial-banner-pill">✨ Método IA</span>
+    </div>
+    <a href="tutorial.html" class="tutorial-banner-btn">
+      📖 Ver Tutorial Completo
+    </a>
+  </div>
+</div>
+
 <!-- PREÇOS -->
 <section id="precos" class="pricing-section">
   <div class="section-header">
@@ -867,6 +1155,39 @@
   </div>
 </section>
 
+<div class="suporte-banner">
+  <div class="suporte-banner-inner">
+
+    <div class="suporte-banner-left">
+      <div class="suporte-banner-icon">🛟</div>
+      <div>
+        <div class="suporte-banner-eyebrow">Central de Ajuda</div>
+        <div class="suporte-banner-title">Dúvidas? Temos respostas!</div>
+        <div class="suporte-banner-sub">FAQ completo com 21 perguntas sobre instalação, planos, IA e mais</div>
+      </div>
+    </div>
+
+    <div class="suporte-banner-chips">
+      <span class="suporte-chip"><span class="chip-dot roxo"></span> Instalação</span>
+      <span class="suporte-chip"><span class="chip-dot dourado"></span> Planos & Pagamento</span>
+      <span class="suporte-chip"><span class="chip-dot azul"></span> Inteligência Artificial</span>
+      <span class="suporte-chip"><span class="chip-dot verde"></span> Problemas & Erros</span>
+    </div>
+
+    <div class="suporte-banner-actions">
+      <a href="suporte.html" class="suporte-btn-primary">
+        🛟 Acessar o Suporte
+      </a>
+      <a href="https://wa.me/5538991582493" target="_blank" class="suporte-btn-secondary">
+        <svg viewBox="0 0 24 24" fill="white" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
 <!-- INSTAGRAM CTA -->
 <section class="instagram-section">
   <h2>📲 Siga no Instagram!</h2>
@@ -877,6 +1198,7 @@
   </a>
   <span class="ig-handle">instagram.com/ded_express</span>
 </section>
+
 
 <!-- FOOTER -->
 <footer>

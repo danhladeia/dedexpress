@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suporte & FAQ – DED Express</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --roxo: #6a1fc2;
+    --roxo-escuro: #4a0e8f;
+    --roxo-light: #9b59d0;
+    --dourado: #f5b800;
+    --verde: #25d366;
+    --branco: #ffffff;
+    --cinza: #f4f0fb;
+    --texto: #2d2d2d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cinza); color: var(--texto); overflow-x: hidden; }
+
+  header {
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+    padding: 10px 30px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 200;
+    box-shadow: 0 2px 20px rgba(106,31,194,0.12); border-bottom: 3px solid var(--roxo);
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-wrap img { height: 54px; border-radius: 50%; object-fit: cover; }
+  .logo-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--roxo-escuro); line-height: 1.1; }
+  .logo-name span { color: var(--dourado); display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  header nav { display: flex; align-items: center; gap: 18px; }
+  header nav a { color: var(--roxo-escuro); text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: color 0.2s; }
+  header nav a:hover { color: var(--roxo-light); }
+  .ig-btn {
+    display: flex; align-items: center; gap: 7px;
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    color: white !important; padding: 8px 16px; border-radius: 25px;
+    font-weight: 700 !important; font-size: 0.85rem !important;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ig-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(221,42,123,0.4); }
+  .ig-btn svg { width: 18px; height: 18px; fill: white; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--roxo) 0%, var(--roxo-escuro) 60%, #2a0060 100%);
+    color: white; padding: 70px 20px 55px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(245,184,0,0.13) 0%, transparent 70%); top: -80px; right: -80px; border-radius: 50%; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(245,184,0,0.07) 0%, transparent 70%); bottom: -60px; left: -40px; border-radius: 50%; pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,184,0,0.15); border: 2px dashed rgba(245,184,0,0.4); padding: 7px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; color: var(--dourado); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+  .hero-badge .dot { width: 7px; height: 7px; background: var(--dourado); border-radius: 50%; animation: blink 1.8s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+  .hero h1 em { font-style: normal; color: var(--dourado); }
+  .hero p { font-size: 1.05rem; max-width: 560px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.65; }
+  .search-wrap { max-width: 520px; margin: 0 auto; position: relative; }
+  .search-wrap input { width: 100%; padding: 16px 54px 16px 22px; border-radius: 50px; border: 2px solid rgba(245,184,0,0.4); background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); color: white; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 600; outline: none; transition: border 0.2s, background 0.2s; }
+  .search-wrap input::placeholder { color: rgba(255,255,255,0.5); }
+  .search-wrap input:focus { border-color: var(--dourado); background: rgba(255,255,255,0.18); }
+  .search-wrap .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; opacity: 0.7; pointer-events: none; }
+  .search-result-count { text-align: center; margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 600; min-height: 20px; }
+
+  .main-layout { max-width: 1080px; margin: 0 auto; padding: 50px 24px 100px; display: grid; grid-template-columns: 240px 1fr; gap: 36px; }
+  @media (max-width: 780px) { .main-layout { grid-template-columns: 1fr; } }
+
+  .sidebar { position: sticky; top: 100px; align-self: start; }
+  .sidebar-title { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--roxo); margin-bottom: 14px; }
+  .sidebar-cats { display: flex; flex-direction: column; gap: 4px; }
+  .cat-btn { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; border: 2px solid transparent; background: transparent; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700; color: #3d2060; transition: all 0.2s; text-align: left; }
+  .cat-btn:hover { background: rgba(106,31,194,0.08); border-color: rgba(106,31,194,0.2); color: var(--roxo-escuro); }
+  .cat-btn.active { background: rgba(106,31,194,0.1); border-color: rgba(106,31,194,0.3); color: var(--roxo-escuro); }
+  .cat-btn .cat-icon { font-size: 17px; flex-shrink: 0; }
+  .cat-btn .cat-count { margin-left: auto; background: rgba(106,31,194,0.12); color: var(--roxo-escuro); padding: 2px 9px; border-radius: 50px; font-size: 11px; font-weight: 800; border: 1px solid rgba(106,31,194,0.2); }
+  .cat-btn.active .cat-count { background: var(--roxo); color: white; border-color: var(--roxo); }
+  .sidebar-divider { height: 1px; background: #ede8f9; margin: 14px 0; }
+  .contact-card { background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo)); border-radius: 16px; padding: 20px; color: white; margin-top: 18px; }
+  .contact-card h4 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 6px; }
+  .contact-card p { font-size: 12px; opacity: 0.82; margin-bottom: 14px; line-height: 1.5; }
+  .contact-card a { display: flex; align-items: center; gap: 8px; background: var(--verde); color: white; padding: 10px 16px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 13px; text-decoration: none; transition: 0.2s; margin-bottom: 8px; }
+  .contact-card a:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(37,211,102,0.4); }
+  .contact-card a.ig-contact { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+  .contact-card a.ig-contact:hover { box-shadow: 0 4px 15px rgba(221,42,123,0.4); }
+
+  .faq-section { margin-bottom: 40px; }
+  .faq-section[data-hidden="true"] { display: none; }
+  .section-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid #ede8f9; }
+  .section-heading .s-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+  .s-icon.roxo { background: rgba(106,31,194,0.12); }
+  .s-icon.dourado { background: rgba(245,184,0,0.15); }
+  .s-icon.verde { background: rgba(37,211,102,0.12); }
+  .s-icon.azul { background: rgba(59,130,246,0.1); }
+  .s-icon.vermelho { background: rgba(239,68,68,0.1); }
+  .section-heading h2 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--roxo-escuro); }
+  .section-heading .count { margin-left: auto; background: var(--cinza); border: 1px solid #ede8f9; color: #888; padding: 3px 12px; border-radius: 50px; font-size: 12px; font-weight: 800; }
+
+  .accordion { display: flex; flex-direction: column; gap: 10px; }
+  .acc-item { background: white; border-radius: 14px; border: 2px solid transparent; box-shadow: 0 2px 12px rgba(106,31,194,0.07); overflow: hidden; transition: border 0.2s, box-shadow 0.2s; }
+  .acc-item.open { border-color: rgba(106,31,194,0.25); box-shadow: 0 6px 25px rgba(106,31,194,0.12); }
+  .acc-item[data-hidden="true"] { display: none; }
+  .acc-trigger { width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: none; border: none; cursor: pointer; text-align: left; transition: background 0.2s; }
+  .acc-trigger:hover { background: rgba(106,31,194,0.03); }
+  .acc-q { flex: 1; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--roxo-escuro); line-height: 1.4; }
+  .acc-arrow { flex-shrink: 0; width: 28px; height: 28px; background: rgba(106,31,194,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; font-size: 13px; color: var(--roxo); }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); background: var(--roxo); color: white; }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .acc-item.open .acc-body { max-height: 800px; }
+  .acc-body-inner { padding: 0 20px 20px; border-top: 1px solid #f4f0fb; font-size: 14px; color: #555; line-height: 1.75; font-weight: 600; }
+  .acc-body-inner p { margin-bottom: 10px; }
+  .acc-body-inner p:last-child { margin-bottom: 0; }
+  .acc-body-inner strong { color: var(--roxo-escuro); }
+  .acc-body-inner a { color: var(--roxo); font-weight: 700; }
+  .acc-body-inner ul { padding-left: 18px; margin-top: 8px; }
+  .acc-body-inner li { margin-bottom: 6px; }
+  .acc-body-inner .tip-box { background: rgba(245,184,0,0.1); border-left: 3px solid var(--dourado); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 12px; font-size: 13px; color: #444; }
+  .acc-body-inner .tip-box strong { color: #92400e; }
+  .acc-body-inner .warn-box { background: rgba(239,68,68,0.07); border-left: 3px solid #ef4444; border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 12px; font-size: 13px; color: #444; }
+  .acc-body-inner .warn-box strong { color: #991b1b; }
+  .acc-body-inner .info-box { background: rgba(106,31,194,0.07); border-left: 3px solid var(--roxo-light); border-radius: 0 10px 10px 0; padding: 12px 16px; margin-top: 12px; font-size: 13px; color: #444; }
+  .acc-body-inner .info-box strong { color: var(--roxo-escuro); }
+  .acc-body-inner .steps { list-style: none; padding: 0; margin-top: 10px; }
+  .acc-body-inner .steps li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .acc-body-inner .steps li .n { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: var(--roxo); color: white; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+  .tag-new { display: inline-block; background: var(--dourado); color: #000; font-size: 10px; font-weight: 900; padding: 2px 8px; border-radius: 50px; margin-left: 8px; vertical-align: middle; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .status-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 28px; }
+  @media (max-width: 600px) { .status-grid { grid-template-columns: 1fr 1fr; } }
+  .status-card { background: white; border-radius: 14px; padding: 18px 16px; text-align: center; border: 2px solid #ede8f9; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .status-card .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--verde); margin: 0 auto 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.4)} 50%{box-shadow:0 0 0 6px rgba(37,211,102,0)} }
+  .status-card .s-label { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .status-card .s-val { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; color: var(--roxo-escuro); }
+
+  .no-results { text-align: center; padding: 60px 20px; display: none; }
+  .no-results .emoji { font-size: 3rem; margin-bottom: 14px; }
+  .no-results h3 { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--roxo-escuro); margin-bottom: 8px; }
+  .no-results p { color: #888; font-size: 14px; }
+
+  footer { background: #1a0030; color: rgba(255,255,255,0.7); padding: 40px 20px; text-align: center; font-size: 0.88rem; line-height: 1.8; }
+  footer strong { color: var(--dourado); }
+  footer .footer-logo { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 14px; display: block; border: 2px solid rgba(255,255,255,0.2); }
+  .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: var(--verde); color: white; width: 62px; height: 62px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 6px 25px rgba(37,211,102,0.5); text-decoration: none; z-index: 1000; transition: transform 0.3s; }
+  .whatsapp-float:hover { transform: scale(1.12); }
+
+  @media (max-width: 768px) {
+    header nav a:not(.ig-btn) { display: none; }
+    .sidebar { position: static; }
+    .sidebar-cats { flex-direction: row; flex-wrap: wrap; }
+    .cat-btn { font-size: 12px; padding: 8px 12px; }
+    .cat-btn .cat-count { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+    <img src="img/logo.png" alt="DED Express Logo" onerror="this.style.display='none'">
+    <div class="logo-name">DED Express <span>Chrome Extension</span></div>
+  </a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="index.html#precos">Preços</a>
+    <a href="https://www.instagram.com/ded_express/" target="_blank" class="ig-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> Central de Ajuda</div>
+  <h1>Suporte <em>DED Express</em></h1>
+  <p>Encontre respostas rápidas para as dúvidas mais comuns. Se não encontrar, fale com a gente pelo WhatsApp!</p>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Pesquisar dúvidas... ex: Pix, garantia, IA..." autocomplete="off">
+    <span class="search-icon">🔍</span>
+  </div>
+  <div class="search-result-count" id="resultCount"></div>
+</section>
+
+<div style="background:white; border-bottom: 2px solid #ede8f9; padding: 22px 24px;">
+  <div style="max-width:1080px; margin:0 auto;">
+    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:800; color:#888; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;">🟢 Status dos Serviços</div>
+    <div class="status-grid">
+      <div class="status-card"><div class="status-dot"></div><div class="s-label">Extensão Chrome</div><div class="s-val">Operacional</div></div>
+      <div class="status-card"><div class="status-dot"></div><div class="s-label">DED+ (SEEMG)</div><div class="s-val">Operacional</div></div>
+      <div class="status-card"><div class="status-dot"></div><div class="s-label">IA Integrada</div><div class="s-val">Operacional</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-title">Categorias</div>
+    <div class="sidebar-cats">
+      <button class="cat-btn active" data-cat="all" onclick="filterCat('all',this)">
+        <span class="cat-icon">🗂️</span> Todas as dúvidas <span class="cat-count">21</span>
+      </button>
+      <button class="cat-btn" data-cat="instalacao" onclick="filterCat('instalacao',this)">
+        <span class="cat-icon">⚙️</span> Instalação <span class="cat-count">4</span>
+      </button>
+      <button class="cat-btn" data-cat="licenca" onclick="filterCat('licenca',this)">
+        <span class="cat-icon">💳</span> Licença & Planos <span class="cat-count">5</span>
+      </button>
+      <button class="cat-btn" data-cat="uso" onclick="filterCat('uso',this)">
+        <span class="cat-icon">📋</span> Uso & Lançamentos <span class="cat-count">4</span>
+      </button>
+      <button class="cat-btn" data-cat="ia" onclick="filterCat('ia',this)">
+        <span class="cat-icon">✨</span> Inteligência Artificial <span class="cat-count">4</span>
+      </button>
+      <button class="cat-btn" data-cat="erros" onclick="filterCat('erros',this)">
+        <span class="cat-icon">🔧</span> Problemas & Erros <span class="cat-count">4</span>
+      </button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="contact-card">
+      <h4>Não achou sua dúvida?</h4>
+      <p>Fale com a gente diretamente. Respondemos rápido!</p>
+      <a href="https://wa.me/5538991582493" target="_blank">
+        <svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="https://www.instagram.com/ded_express/" target="_blank" class="ig-contact">
+        <svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        DM no Instagram
+      </a>
+    </div>
+  </aside>
+
+  <div class="faq-content" id="faqContent">
+
+    <!-- INSTALAÇÃO -->
+    <div class="faq-section" data-section="instalacao">
+      <div class="section-heading">
+        <div class="s-icon roxo">⚙️</div>
+        <h2>Instalação e Configuração</h2>
+        <span class="count">4 perguntas</span>
+      </div>
+      <div class="accordion">
+        <div class="acc-item" data-cat="instalacao" data-q="Como instalo a extensão DED Express no Chrome?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Como instalo a extensão DED Express no Chrome?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <ul class="steps">
+              <li><span class="n">1</span> Acesse a <strong>Chrome Web Store</strong> pelo Google Chrome</li>
+              <li><span class="n">2</span> Pesquise por <strong>"DED Express"</strong> ou use o link enviado após a compra</li>
+              <li><span class="n">3</span> Clique em <strong>"Usar no Chrome"</strong> e confirme a instalação</li>
+              <li><span class="n">4</span> O ícone da extensão aparecerá na barra superior do Chrome</li>
+              <li><span class="n">5</span> Clique no ícone e faça login com seu e-mail para ativar</li>
+            </ul>
+            <div class="tip-box">💡 <strong>Dica:</strong> Se o ícone não aparecer, clique no ícone de quebra-cabeça 🧩 na barra do Chrome e fixe a DED Express.</div>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="instalacao" data-q="A extensão funciona em outros navegadores além do Chrome?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">A extensão funciona em outros navegadores além do Chrome?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Não. A DED Express funciona <strong>exclusivamente no Google Chrome</strong>. Navegadores como Firefox, Safari, Edge ou Opera não são compatíveis.</p>
+            <p>O Chrome pode ser baixado gratuitamente em <a href="https://chrome.google.com" target="_blank">chrome.google.com</a>. Mantenha-o sempre atualizado para melhor desempenho.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="instalacao" data-q="Preciso de permissões especiais para a extensão funcionar?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Preciso de permissões especiais para a extensão funcionar?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>A extensão solicita apenas permissão de acesso ao portal <strong>ded.educacao.mg.gov.br</strong> para preencher os campos automaticamente. Nenhuma outra permissão é necessária.</p>
+            <p>A DED Express <strong>não acessa</strong> outros sites, não coleta dados pessoais e não transmite informações de alunos para servidores externos.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="instalacao" data-q="Como atualizo a extensão para a versão mais recente?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Como atualizo a extensão para a versão mais recente?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>O Chrome atualiza extensões automaticamente. Para forçar uma atualização imediata:</p>
+            <ul class="steps">
+              <li><span class="n">1</span> Acesse <strong>chrome://extensions</strong> na barra de endereço</li>
+              <li><span class="n">2</span> Ative o <strong>Modo do desenvolvedor</strong> (canto superior direito)</li>
+              <li><span class="n">3</span> Clique em <strong>"Atualizar"</strong> no topo da página</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LICENÇA -->
+    <div class="faq-section" data-section="licenca">
+      <div class="section-heading">
+        <div class="s-icon dourado">💳</div>
+        <h2>Licença, Pagamento e Planos</h2>
+        <span class="count">5 perguntas</span>
+      </div>
+      <div class="accordion">
+        <div class="acc-item" data-cat="licenca" data-q="Qual a diferença entre o plano Gratuito e o plano Premium?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Qual a diferença entre o plano Gratuito e o plano Premium?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>O <strong>Plano Gratuito</strong> permite até <strong>10 lançamentos de aulas</strong> para que você conheça a extensão sem compromisso.</p>
+            <p>O <strong>Plano Premium (R$19,90/ano)</strong> libera lançamentos ilimitados, preenchimento em massa, modelos reutilizáveis por trimestre e todas as atualizações por 12 meses — ideal para uso profissional no dia a dia.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="licenca" data-q="Como faço o pagamento? Aceita Pix?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Como faço o pagamento? Aceita Pix? <span class="tag-new">Popular</span></span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Sim! Aceitamos <strong>Pix</strong> e <strong>Cartão de Crédito</strong>. Entre em contato pelo WhatsApp <a href="https://wa.me/5538991582493" target="_blank">(38) 99158-2493</a> para receber os dados de pagamento.</p>
+            <p>Após a confirmação, a ativação da licença é feita <strong>em até 3 horas</strong> no horário comercial.</p>
+            <div class="tip-box">💡 <strong>Dica:</strong> Informe o e-mail que usará na extensão ao realizar o pagamento para agilizar a ativação.</div>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="licenca" data-q="A licença é por dispositivo ou por e-mail?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">A licença é por dispositivo ou por e-mail?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>A licença é vinculada ao seu <strong>e-mail</strong>. Você pode usar a DED Express em qualquer computador com Chrome — basta fazer login com o mesmo e-mail cadastrado na ativação.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="licenca" data-q="O que acontece quando minha licença vence?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">O que acontece quando minha licença vence?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Ao vencer, a extensão retorna automaticamente ao <strong>Plano Gratuito</strong> (limite de 10 lançamentos). Seus dados e modelos salvos são mantidos.</p>
+            <p>Para renovar, entre em contato pelo WhatsApp. A reativação é imediata após a confirmação do pagamento.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="licenca" data-q="Tem garantia ou reembolso?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Tem garantia ou reembolso?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Oferecemos <strong>7 dias de garantia</strong> após a compra para falhas ou erros técnicos comprovados da extensão quando utilizada no <strong>modo manual</strong>. Se a extensão não executar corretamente o lançamento de aulas por problema nosso, realizamos o reembolso integral.</p>
+            <div class="warn-box">⚠️ <strong>Importante:</strong> A garantia se aplica exclusivamente a falhas técnicas da extensão em modo manual. O modo IA é um recurso complementar que depende de serviços externos de inteligência artificial — eventuais instabilidades nesse recurso não são cobertas pela garantia, pois estão fora do nosso controle operacional. Recomendamos sempre revisar os conteúdos gerados antes de confirmar o lançamento.</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USO -->
+    <div class="faq-section" data-section="uso">
+      <div class="section-heading">
+        <div class="s-icon verde">📋</div>
+        <h2>Uso e Lançamentos</h2>
+        <span class="count">4 perguntas</span>
+      </div>
+      <div class="accordion">
+        <div class="acc-item" data-cat="uso" data-q="O que exatamente a extensão lança no DED+?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">O que exatamente a extensão lança no DED+?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>A DED Express realiza exclusivamente o <strong>lançamento de aulas</strong> (conteúdo programático) dentro do <strong>trimestre aberto</strong> no sistema DED+.</p>
+            <div class="warn-box">⚠️ <strong>Fora do escopo da extensão:</strong> Frequência de alunos e lançamento de notas <strong>não são</strong> realizados pela extensão. Esses registros devem ser feitos diretamente no DED+ pelo professor, da forma habitual.</div>
+            <div class="tip-box">💡 A extensão atua apenas nos campos de conteúdo programático disponíveis no trimestre que estiver aberto e editável no momento do uso.</div>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="uso" data-q="Posso usar para várias turmas e componentes curriculares?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Posso usar para várias turmas e componentes curriculares?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Sim! A extensão funciona para <strong>todas as turmas e componentes</strong> vinculados ao seu usuário no DED+. Basta abrir o diário de cada turma e utilizar o painel normalmente para cada uma.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="uso" data-q="É possível lançar aulas de trimestres anteriores?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">É possível lançar aulas de trimestres anteriores?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Somente se o sistema DED+ ainda permitir a edição daquele trimestre. A extensão atua nos campos que estiverem <strong>disponíveis e editáveis</strong> na página aberta. Trimestres encerrados e travados pelo sistema não poderão ser alterados.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="uso" data-q="Posso salvar modelos de conteúdo para reutilizar toda semana?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Posso salvar modelos de conteúdo para reutilizar toda semana?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Sim! No <strong>Plano Premium</strong>, você pode salvar modelos de conteúdo programático e reutilizá-los a cada semana com poucos cliques — sem precisar redigitar os mesmos textos. Acesse a aba <strong>"Modelos Salvos"</strong> no painel da extensão.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IA -->
+    <div class="faq-section" data-section="ia">
+      <div class="section-heading">
+        <div class="s-icon azul">✨</div>
+        <h2>Inteligência Artificial</h2>
+        <span class="count">4 perguntas</span>
+      </div>
+      <div class="accordion">
+        <div class="acc-item" data-cat="ia" data-q="Como funciona a geração de conteúdo por IA?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Como funciona a geração de conteúdo por IA? <span class="tag-new">Novo</span></span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>O modo IA é um <strong>recurso complementar</strong> da extensão. Você preenche o campo de detalhes da turma com informações como <strong>ano escolar, componente curricular e conteúdos trabalhados</strong>, e a IA gera automaticamente os textos de conteúdo programático para as aulas do período.</p>
+            <div class="info-box">📌 <strong>O professor é responsável por fornecer os detalhes da turma</strong> no campo correspondente antes de acionar a geração. Quanto mais completas as informações — temas específicos, habilidades da BNCC, sequência de conteúdos — <strong>melhores e mais precisos</strong> serão os resultados gerados pela IA.</div>
+            <p style="margin-top:12px;">Após a geração, os textos ficam disponíveis para <strong>revisão e edição</strong> antes de qualquer lançamento.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="ia" data-q="Os conteúdos gerados pela IA são confiáveis?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Os conteúdos gerados pela IA são confiáveis?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>A IA é orientada para gerar conteúdos coerentes com a BNCC e adequados ao contexto escolar. No entanto, a qualidade dos resultados está diretamente ligada às informações fornecidas pelo professor no campo de detalhes da turma.</p>
+            <p><strong>A revisão antes do lançamento é sempre recomendada</strong> — o professor conhece a realidade da sua turma e é quem melhor pode validar os conteúdos sugeridos.</p>
+            <div class="warn-box">⚠️ <strong>Nota sobre o serviço de IA:</strong> O modo IA utiliza uma plataforma externa de inteligência artificial. Como qualquer serviço de terceiros, pode estar sujeito a indisponibilidades pontuais ou variações de desempenho alheias ao controle da DED Express. Nesses casos, recomendamos o uso do modo manual, que funciona de forma independente.</div>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="ia" data-q="Quantas aulas posso gerar com IA de uma vez?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Quantas aulas posso gerar com IA de uma vez?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>No <strong>Plano Premium</strong>, você pode gerar os conteúdos de um trimestre inteiro de uma só vez, sem limite fixo por geração.</p>
+            <p>No <strong>Plano Gratuito</strong>, o limite geral de 10 lançamentos também se aplica às gerações por IA.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="ia" data-q="Meus dados de alunos são enviados para a IA?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Meus dados de alunos são enviados para a IA?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p><strong>Não.</strong> A IA recebe apenas os detalhes que você digita no campo correspondente — como ano escolar e conteúdos trabalhados. Nomes de alunos, dados de frequência ou qualquer informação pessoal <strong>nunca são transmitidos</strong> para nenhum serviço externo.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERROS -->
+    <div class="faq-section" data-section="erros">
+      <div class="section-heading">
+        <div class="s-icon vermelho">🔧</div>
+        <h2>Problemas Comuns e Soluções</h2>
+        <span class="count">4 perguntas</span>
+      </div>
+      <div class="accordion">
+        <div class="acc-item" data-cat="erros" data-q="A extensão não está aparecendo na página do DED+. O que fazer?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">A extensão não está aparecendo na página do DED+. O que fazer?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <ul class="steps">
+              <li><span class="n">1</span> Verifique se a extensão está <strong>ativada</strong> em <em>chrome://extensions</em></li>
+              <li><span class="n">2</span> Recarregue a página do DED+ com <strong>Ctrl+F5</strong></li>
+              <li><span class="n">3</span> Confirme que está usando o <strong>Google Chrome</strong></li>
+              <li><span class="n">4</span> Faça logout e login novamente na extensão</li>
+              <li><span class="n">5</span> Se persistir, desinstale e reinstale a extensão</li>
+            </ul>
+            <div class="tip-box">💡 Se nada resolver, entre em contato pelo WhatsApp com uma captura de tela do erro.</div>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="erros" data-q="O lançamento parou no meio. Os dados foram salvos?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">O lançamento parou no meio. Os dados foram salvos?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Os registros concluídos antes da interrupção são salvos normalmente no DED+. A extensão indica quais aulas foram salvas com sucesso e quais precisam ser repetidas.</p>
+            <p>Use o botão <strong>"Retentar"</strong> no painel para relançar apenas as aulas com erro, sem duplicar as já salvas.</p>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="erros" data-q="Recebi erro de sessão expirada ou não autorizado. Como resolver?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">Recebi erro de "sessão expirada" ou "não autorizado". Como resolver?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Esse erro ocorre quando sua sessão no DED+ ou na extensão expirou. Resolução rápida:</p>
+            <ul class="steps">
+              <li><span class="n">1</span> <strong>No DED+:</strong> Faça logout e login novamente no portal</li>
+              <li><span class="n">2</span> <strong>Na extensão:</strong> Clique no ícone → Sair → Entrar novamente com seu e-mail</li>
+              <li><span class="n">3</span> Recarregue a página do diário e tente novamente</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="acc-item" data-cat="erros" data-q="O DED+ foi atualizado e a extensão parou de funcionar. E agora?">
+          <button class="acc-trigger" onclick="toggleAcc(this)"><span class="acc-q">O DED+ foi atualizado e a extensão parou de funcionar. E agora?</span><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <p>Quando a SEEMG atualiza o DED+, pode ser necessário ajustar a extensão para manter a compatibilidade. Nossa equipe monitora essas mudanças e publica correções o mais rápido possível.</p>
+            <p>Usuários do <strong>Plano Premium</strong> recebem atualizações com prioridade. Se você identificar esse problema, nos avise pelo WhatsApp — sua informação ajuda a acelerar a correção para todos.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results" id="noResults">
+      <div class="emoji">🔍</div>
+      <h3>Nenhum resultado encontrado</h3>
+      <p>Tente palavras-chave diferentes ou fale diretamente conosco no WhatsApp.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <img src="img/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+  <p><strong>DED Express</strong> — Chrome Extension para Professores de MG</p>
+  <p>Desenvolvido com ❤️ por professor, para professor.</p>
+  <p style="margin-top:12px;">
+    <a href="https://www.instagram.com/ded_express/" target="_blank" style="color:var(--dourado);text-decoration:none;">📷 @ded_express</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/5538991582493" target="_blank" style="color:var(--verde);text-decoration:none;">💬 WhatsApp</a>
+    &nbsp;·&nbsp;
+    <a href="tutorial.html" style="color:#c084fc;text-decoration:none;">📖 Tutorial</a>
+  </p>
+  <p style="margin-top:16px;font-size:0.78rem;opacity:0.5;">© 2026 DED Express. Todos os direitos reservados.</p>
+</footer>
+
+<a href="https://wa.me/5538991582493" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  function toggleAcc(btn) {
+    const item = btn.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.faq-section').forEach(sec => {
+      sec.setAttribute('data-hidden', cat === 'all' ? 'false' : sec.dataset.section !== cat ? 'true' : 'false');
+    });
+    document.querySelectorAll('.acc-item').forEach(item => {
+      item.setAttribute('data-hidden', cat === 'all' || item.dataset.cat === cat ? 'false' : 'true');
+    });
+    document.getElementById('searchInput').value = '';
+    document.getElementById('resultCount').textContent = '';
+    document.getElementById('noResults').style.display = 'none';
+  }
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+    document.querySelectorAll('.faq-section').forEach(s => s.removeAttribute('data-hidden'));
+    if (!q) {
+      document.querySelectorAll('.acc-item').forEach(i => i.removeAttribute('data-hidden'));
+      document.getElementById('resultCount').textContent = '';
+      document.getElementById('noResults').style.display = 'none';
+      return;
+    }
+    let count = 0;
+    document.querySelectorAll('.acc-item').forEach(item => {
+      const text = (item.dataset.q + ' ' + item.querySelector('.acc-body-inner').textContent).toLowerCase();
+      if (text.includes(q)) { item.removeAttribute('data-hidden'); item.classList.add('open'); count++; }
+      else { item.setAttribute('data-hidden', 'true'); item.classList.remove('open'); }
+    });
+    document.querySelectorAll('.faq-section').forEach(sec => {
+      const visibles = sec.querySelectorAll('.acc-item:not([data-hidden="true"])');
+      sec.setAttribute('data-hidden', visibles.length === 0 ? 'true' : 'false');
+    });
+    document.getElementById('resultCount').textContent = count > 0 ? `${count} resultado(s) encontrado(s)` : '';
+    document.getElementById('noResults').style.display = count === 0 ? 'block' : 'none';
+  });
+</script>
+</body>
+</html>
