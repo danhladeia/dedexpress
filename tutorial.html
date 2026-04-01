@@ -303,6 +303,87 @@
     header nav a:not(.ig-btn) { display: none; }
     .index-nav { top: 77px; }
   }
+
+/*FAIXA DE INFO */
+
+.faixa-info {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    padding: 0 30px;
+  }
+  .faixa-info-inner {
+    background: linear-gradient(135deg, #4a0e8f 0%, #6a1fc2 60%, #9b59d0 100%);
+    border-radius: 14px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(106,31,194,0.25);
+  }
+  .faixa-info-inner::before {
+    content: '';
+    position: absolute;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(245,184,0,0.12) 0%, transparent 70%);
+    top: -60px; right: 60px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .faixa-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(245,184,0,0.18);
+    border: 1.5px solid rgba(245,184,0,0.45);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px; font-weight: 800;
+    color: #f5b800;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .faixa-badge .blink {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #f5b800;
+    animation: blink 1.6s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .faixa-text {
+    flex: 1;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.5;
+    z-index: 1;
+  }
+  .faixa-text strong {
+    color: white;
+    font-weight: 900;
+  }
+
+  .faixa-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #f5b800;
+    color: #000;
+    padding: 9px 20px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 13px;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 14px rgba(245,184,0,0.4);
+    z-index: 1;
+  }
+  .faixa-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,184,0,0.55); }
+
+  @media (max-width: 640px) {
+    .faixa-info-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .faixa-btn { width: 100%; justify-content: center; }
+  }
+
 </style>
 </head>
 <body>
@@ -323,7 +404,10 @@
   </nav>
 </header>
 
+
 <!-- HERO -->
+
+
 <section class="hero-tutorial">
   <div class="hero-badge"><span class="dot"></span> Guia Completo de Uso</div>
   <h1>Tutorial <em>DED Express</em><br>Passo a Passo</h1>
@@ -350,6 +434,21 @@
   <a href="#passo6">6. Com IA</a>
   <a href="#passo7">7. Conclusão</a>
 </div>
+
+
+<div class="faixa-info">
+  <div class="faixa-info-inner">
+    <div class="faixa-badge"><span class="blink"></span> Em breve</div>
+    <div class="faixa-text">
+      <strong>Tutorial escrito completo chegando em breve!</strong>
+      Enquanto isso, nossos vídeos cobrem tudo o que você precisa para começar a usar a DED Express agora mesmo.
+    </div>
+    <a href="index.html" class="faixa-btn">
+      ▶ Ver os vídeos
+    </a>
+  </div>
+</div>
+
 
 <div class="container">
 
