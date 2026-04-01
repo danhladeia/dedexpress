@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutorial – DED Express</title>
+<meta name="description" content="Aprenda a usar a extensão DED Express em 3 passos simples. Automatize o lançamento de diários de aula no DED+ de Minas Gerais.">
+<meta name="keywords" content="DED express, tutorial DED, extensão Chrome professor, DED MG, lançamento de aulas">
+<meta name="author" content="DED Express">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -99,181 +102,229 @@
   .hero-tutorial h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
   .hero-tutorial h1 em { font-style: normal; color: var(--dourado); }
   .hero-tutorial p { font-size: 1.05rem; max-width: 580px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.65; }
-  .steps-overview {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .step-pill {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50px;
-    padding: 7px 16px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: white;
-  }
-
-  /* INDEX NAV */
-  .index-nav {
-    background: white;
-    border-bottom: 2px solid #ede8f9;
-    padding: 14px 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    align-items: center;
-    position: sticky;
-    top: 80px;
-    z-index: 100;
-  }
-  .index-nav .label { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800; color: var(--roxo); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 6px; }
-  .index-nav a { font-size: 13px; color: #666; text-decoration: none; font-weight: 600; transition: color 0.2s; white-space: nowrap; }
-  .index-nav a:hover { color: var(--roxo); }
 
   /* CONTAINER */
   .container { max-width: 880px; margin: 0 auto; padding: 60px 24px 100px; }
 
-  /* STEP */
-  .step { margin-bottom: 65px; }
-
-  .step-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
-  .step-num {
-    flex-shrink: 0;
-    width: 52px; height: 52px;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800; font-size: 22px;
-    color: white;
+  /* 3 PASSOS SIMPLES */
+  .steps-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 50px;
   }
-  .step-num.roxo { background: linear-gradient(135deg, var(--roxo), var(--roxo-light)); box-shadow: 0 4px 20px rgba(106,31,194,0.35); }
-  .step-num.dourado { background: linear-gradient(135deg, #d97706, var(--dourado)); box-shadow: 0 4px 20px rgba(245,184,0,0.4); }
-  .step-num.verde { background: linear-gradient(135deg, #059669, var(--verde)); box-shadow: 0 4px 20px rgba(37,211,102,0.35); }
-  .step-num.escuro { background: linear-gradient(135deg, #2a0060, var(--roxo-escuro)); box-shadow: 0 4px 20px rgba(74,14,143,0.4); }
-  .step-num.light { background: linear-gradient(135deg, var(--roxo-light), #c084fc); box-shadow: 0 4px 20px rgba(155,89,208,0.4); }
-  .step-num.gold2 { background: linear-gradient(135deg, #b45309, #f59e0b); box-shadow: 0 4px 20px rgba(245,158,11,0.4); }
-  .step-num.teal { background: linear-gradient(135deg, #0f766e, #14b8a6); box-shadow: 0 4px 20px rgba(20,184,166,0.35); }
-
-  .step-meta { flex: 1; }
-  .step-tag { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--roxo); margin-bottom: 4px; }
-  .step h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800; color: var(--roxo-escuro); line-height: 1.3; }
-
-  /* SCREENSHOT */
-  .screenshot {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 2px solid #ede8f9;
-    margin-bottom: 20px;
+  .step-card {
     background: white;
-    box-shadow: 0 6px 25px rgba(106,31,194,0.1);
-    transition: box-shadow 0.3s, transform 0.3s;
+    border-radius: 24px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    box-shadow: 0 6px 25px rgba(106,31,194,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #ede8f9;
   }
-  .screenshot:hover { box-shadow: 0 12px 35px rgba(106,31,194,0.18); transform: translateY(-2px); }
-  .screenshot-bar {
-    background: linear-gradient(90deg, var(--roxo-escuro), var(--roxo));
-    padding: 10px 16px;
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(106,31,194,0.15);
+    border-color: var(--roxo-light);
+  }
+  .step-number {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-light));
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 6px 20px rgba(106,31,194,0.3);
   }
-  .dots { display: flex; gap: 6px; }
-  .dots span { width: 10px; height: 10px; border-radius: 50%; }
-  .dots span:nth-child(1) { background: #ef4444; }
-  .dots span:nth-child(2) { background: var(--dourado); }
-  .dots span:nth-child(3) { background: var(--verde); }
-  .bar-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-left: 6px; font-family: 'Nunito', sans-serif; font-weight: 600; }
-  .screenshot img {
-    width: 100%; height: auto; display: block;
-    min-height: 220px; object-fit: cover; background: #f4f0fb;
+  .step-content {
+    flex: 1;
   }
-  .screenshot-caption {
-    background: var(--cinza);
-    padding: 10px 16px;
-    font-size: 13px;
-    color: #777;
-    border-top: 1px solid #ede8f9;
-    display: flex;
+  .step-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--roxo-escuro);
+    margin-bottom: 12px;
+  }
+  .step-description {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .step-tip {
+    background: rgba(106,31,194,0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--roxo-escuro);
+    font-weight: 600;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-top: 8px;
+  }
+  .step-tip::before {
+    content: '💡';
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .step-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px 20px;
+    }
+    .step-tip {
+      justify-content: center;
+    }
+  }
+
+  /* WARNING CARD */
+  .warning-card {
+    background: rgba(245,184,0,0.08);
+    border-left: 4px solid var(--dourado);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 40px 0 30px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .warning-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .warning-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #5a4a2e;
     font-weight: 600;
   }
-  .screenshot-caption::before { content: '📸'; font-size: 14px; }
+  .warning-text strong {
+    color: var(--dourado-dark);
+  }
 
-  /* BODY TEXT */
-  .step-body { color: #444; font-size: 15px; margin-bottom: 18px; line-height: 1.75; }
-  .step-body p { margin-bottom: 10px; }
-  .step-body strong { color: var(--roxo-escuro); }
-
-  /* CALLOUT */
-  .callout {
+  /* FAIXA INFO (CONSTRUÇÃO) */
+  .faixa-info {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    padding: 0 30px;
+  }
+  .faixa-info-inner {
+    background: linear-gradient(135deg, #4a0e8f 0%, #6a1fc2 60%, #9b59d0 100%);
     border-radius: 14px;
-    padding: 16px 20px;
+    padding: 16px 24px;
     display: flex;
+    align-items: center;
     gap: 14px;
-    align-items: flex-start;
-    margin-bottom: 16px;
-    border-left: 4px solid;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(106,31,194,0.25);
   }
-  .callout.info { background: rgba(106,31,194,0.07); border-color: var(--roxo-light); }
-  .callout.tip { background: rgba(37,211,102,0.08); border-color: var(--verde); }
-  .callout.warn { background: rgba(245,184,0,0.1); border-color: var(--dourado); }
-  .callout.ai { background: rgba(74,14,143,0.08); border-color: var(--roxo-escuro); }
-  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .callout-text { font-size: 14px; color: #444; font-weight: 600; }
-  .callout-text strong { color: var(--roxo-escuro); }
-
-  /* STEP LIST */
-  .step-list { list-style: none; margin: 12px 0 18px; display: flex; flex-direction: column; gap: 10px; }
-  .step-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #444; font-weight: 600; }
-  .step-list li .num {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--roxo), var(--roxo-light));
-    display: flex; align-items: center; justify-content: center;
+  .faixa-info-inner::before {
+    content: '';
+    position: absolute;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(245,184,0,0.12) 0%, transparent 70%);
+    top: -60px; right: 60px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .faixa-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(245,184,0,0.18);
+    border: 1.5px solid rgba(245,184,0,0.45);
+    border-radius: 50px;
+    padding: 5px 14px;
     font-family: 'Poppins', sans-serif;
-    font-size: 12px; font-weight: 800;
-    color: white;
+    font-size: 11px; font-weight: 800;
+    color: #f5b800;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    white-space: nowrap; flex-shrink: 0;
   }
+  .faixa-badge .blink {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #f5b800;
+    animation: blink 1.6s infinite;
+  }
+  .faixa-text {
+    flex: 1;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.5;
+    z-index: 1;
+  }
+  .faixa-text strong {
+    color: white;
+    font-weight: 900;
+  }
+  .faixa-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #f5b800;
+    color: #000;
+    padding: 9px 20px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 13px;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 14px rgba(245,184,0,0.4);
+    z-index: 1;
+  }
+  .faixa-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,184,0,0.55); }
 
-  /* COMPARE */
-  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 22px 0; }
-  @media (max-width:580px) { .compare { grid-template-columns: 1fr; } }
-  .compare-card { border-radius: 16px; padding: 22px; border: 2px solid; }
-  .compare-card.manual { background: rgba(37,211,102,0.06); border-color: rgba(37,211,102,0.3); }
-  .compare-card.ai { background: rgba(106,31,194,0.07); border-color: rgba(106,31,194,0.25); }
-  .compare-card h4 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  .compare-card.manual h4 { color: #059669; }
-  .compare-card.ai h4 { color: var(--roxo); }
-  .compare-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .compare-card ul li { font-size: 13px; color: #555; display: flex; gap: 8px; align-items: flex-start; font-weight: 600; }
-  .compare-card ul li::before { content: '→'; opacity: 0.5; flex-shrink: 0; }
+  @media (max-width: 640px) {
+    .faixa-info-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .faixa-btn { width: 100%; justify-content: center; }
+  }
 
   /* DIVIDER */
   .divider-line {
     height: 3px;
     background: linear-gradient(90deg, transparent, var(--roxo-light), transparent);
-    margin: 60px 0;
+    margin: 40px 0;
     border-radius: 2px;
   }
 
-  /* SECTION TITLE */
-  .section-label {
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 0.15em;
-    color: #999;
-    margin-bottom: 40px;
-    display: flex; align-items: center; gap: 12px;
+  /* CTA FINAL */
+  .cta-final {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo));
+    border-radius: 22px;
+    color: white;
   }
-  .section-label::before, .section-label::after {
-    content: ''; flex: 1; height: 2px;
-    background: linear-gradient(90deg, transparent, #ede8f9, transparent);
+  .cta-final .emoji { font-size: 2.5rem; margin-bottom: 12px; }
+  .cta-final h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+  .cta-final p { opacity: 0.88; margin-bottom: 22px; font-size: 0.95rem; }
+  .cta-final a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--dourado);
+    color: #000;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(245,184,0,0.5);
+    transition: 0.3s;
   }
+  .cta-final a:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,184,0,0.6); }
 
   /* FOOTER */
   footer {
@@ -301,89 +352,7 @@
 
   @media (max-width:768px) {
     header nav a:not(.ig-btn) { display: none; }
-    .index-nav { top: 77px; }
   }
-
-/*FAIXA DE INFO */
-
-.faixa-info {
-    max-width: 1100px;
-    margin: 0 auto 28px;
-    padding: 0 30px;
-  }
-  .faixa-info-inner {
-    background: linear-gradient(135deg, #4a0e8f 0%, #6a1fc2 60%, #9b59d0 100%);
-    border-radius: 14px;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(106,31,194,0.25);
-  }
-  .faixa-info-inner::before {
-    content: '';
-    position: absolute;
-    width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(245,184,0,0.12) 0%, transparent 70%);
-    top: -60px; right: 60px;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .faixa-badge {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(245,184,0,0.18);
-    border: 1.5px solid rgba(245,184,0,0.45);
-    border-radius: 50px;
-    padding: 5px 14px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px; font-weight: 800;
-    color: #f5b800;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .faixa-badge .blink {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #f5b800;
-    animation: blink 1.6s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  .faixa-text {
-    flex: 1;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px; font-weight: 700;
-    color: rgba(255,255,255,0.92);
-    line-height: 1.5;
-    z-index: 1;
-  }
-  .faixa-text strong {
-    color: white;
-    font-weight: 900;
-  }
-
-  .faixa-btn {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: #f5b800;
-    color: #000;
-    padding: 9px 20px; border-radius: 50px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800; font-size: 13px;
-    text-decoration: none; white-space: nowrap; flex-shrink: 0;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 3px 14px rgba(245,184,0,0.4);
-    z-index: 1;
-  }
-  .faixa-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,184,0,0.55); }
-
-  @media (max-width: 640px) {
-    .faixa-info-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .faixa-btn { width: 100%; justify-content: center; }
-  }
-
 </style>
 </head>
 <body>
@@ -404,44 +373,20 @@
   </nav>
 </header>
 
-
 <!-- HERO -->
-
-
 <section class="hero-tutorial">
-  <div class="hero-badge"><span class="dot"></span> Guia Completo de Uso</div>
-  <h1>Tutorial <em>DED Express</em><br>Passo a Passo</h1>
-  <p>Do zero ao lançamento completo: aprenda a registrar suas aulas no DED+ de MG com a extensão Chrome — pelo método manual ou usando a Inteligência Artificial.</p>
-  <div class="steps-overview">
-    <span class="step-pill">📂 Abrir o Diário</span>
-    <span class="step-pill">👩‍🏫 Selecionar Turma</span>
-    <span class="step-pill">📋 Seção de Aulas</span>
-    <span class="step-pill">🤖 Ativar Extensão</span>
-    <span class="step-pill">✏️ Método Manual</span>
-    <span class="step-pill">✨ Método IA</span>
-    <span class="step-pill">✅ Conclusão</span>
-  </div>
+  <div class="hero-badge"><span class="dot"></span> Guia Rápido de Uso</div>
+  <h1>Como começar com <em>DED Express</em><br>em 3 passos</h1>
+  <p>Do zero ao primeiro lançamento em menos de 2 minutos. Siga o passo a passo abaixo.</p>
 </section>
 
-<!-- INDEX NAV -->
-<div class="index-nav">
-  <span class="label">Etapas</span>
-  <a href="#passo1">1. Abrir Diário</a>
-  <a href="#passo2">2. Selecionar Turma</a>
-  <a href="#passo3">3. Aulas</a>
-  <a href="#passo4">4. Ativar Extensão</a>
-  <a href="#passo5">5. Manual</a>
-  <a href="#passo6">6. Com IA</a>
-  <a href="#passo7">7. Conclusão</a>
-</div>
-
-
+<!-- FAIXA DE AVISO (EM CONSTRUÇÃO) -->
 <div class="faixa-info">
   <div class="faixa-info-inner">
     <div class="faixa-badge"><span class="blink"></span> Em breve</div>
     <div class="faixa-text">
       <strong>Tutorial escrito completo chegando em breve!</strong>
-      Enquanto isso, nossos vídeos cobrem tudo o que você precisa para começar a usar a DED Express agora mesmo.
+      Enquanto isso, siga os 3 passos abaixo para começar a usar a DED Express agora mesmo.
     </div>
     <a href="index.html" class="faixa-btn">
       ▶ Ver os vídeos
@@ -449,271 +394,93 @@
   </div>
 </div>
 
-
 <div class="container">
 
-  <!-- PASSO 1 -->
-  <div class="step" id="passo1">
-    <div class="step-header">
-      <div class="step-num roxo">1</div>
-      <div class="step-meta">
-        <div class="step-tag">Início</div>
-        <h2>Abrir o Diário no Sistema DED+</h2>
+  <!-- 3 PASSOS SIMPLES -->
+  <div class="steps-simple">
+    
+    <!-- PASSO 1 -->
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">📂 Prepare o sistema</div>
+        <div class="step-description">
+          Acesse o portal <strong>DED+ de Minas Gerais</strong> (<strong>ded.educacao.mg.gov.br</strong>), faça login com suas credenciais da Rede Estadual e abra o diário da turma desejada na tela de lançamento de aulas.
+        </div>
+        <div class="step-tip">Certifique-se de que está na aba correta do diário, com as aulas visíveis para preenchimento.</div>
       </div>
     </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">ded.educacao.mg.gov.br — Painel Principal</span></div>
-      <img src="img/tutoriais/img1.png" alt="Tela inicial do DED+">
-      <div class="screenshot-caption">Tela inicial do portal DED+ após o login</div>
+
+    <!-- PASSO 2 -->
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">⚡ Ative a extensão</div>
+        <div class="step-description">
+          Com a página do DED+ aberta no <strong>Google Chrome</strong>, clique no ícone da <strong>DED Express</strong> na barra superior do navegador (canto direito).
+          <br><br>
+          <strong>Não está visível?</strong> Clique no ícone de quebra-cabeça 🧩 e fixe a extensão para acesso rápido.
+        </div>
+        <div class="step-tip">A extensão só aparece quando você está na página correta do DED+.</div>
+      </div>
     </div>
-    <div class="step-body">
-      <p>Acesse o portal <strong>DED+</strong> pelo navegador Chrome com a extensão já instalada. Faça login com suas credenciais da Rede Estadual de MG.</p>
-      <p>No painel principal, localize o menu lateral e clique em <strong>"Diário de Classe"</strong> para exibir todas as turmas vinculadas ao seu usuário.</p>
+
+    <!-- PASSO 3 -->
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">🔐 Entre com seu e-mail</div>
+        <div class="step-description">
+          No painel da extensão que abrirá sobre a página, insira o <strong>e-mail cadastrado na sua licença</strong> e clique em <strong>"Entrar"</strong>.
+          <br><br>
+          Pronto! Agora você já pode começar a lançar suas aulas usando o modo manual ou com o auxílio da IA.
+        </div>
+        <div class="step-tip">Após o login, a extensão detecta automaticamente a turma aberta no DED+.</div>
+      </div>
     </div>
-    <div class="callout info">
-      <span class="callout-icon">ℹ️</span>
-      <div class="callout-text"><strong>Atenção:</strong> A DED Express só funciona no <strong>Google Chrome</strong>. Certifique-se de que a extensão está ativa antes de começar — o ícone deve aparecer na barra do navegador.</div>
+
+  </div>
+
+  <!-- AVISO IMPORTANTE -->
+  <div class="warning-card">
+    <div class="warning-icon">⚠️</div>
+    <div class="warning-text">
+      <strong>Importante:</strong> A extensão funciona exclusivamente com a aba do DED+ aberta e na <strong>tela de lançamento de aulas</strong> (conteúdo programático). Certifique-se disso antes de ativar a extensão para garantir que tudo funcione corretamente.
     </div>
   </div>
 
   <div class="divider-line"></div>
 
-  <!-- PASSO 2 -->
-  <div class="step" id="passo2">
-    <div class="step-header">
-      <div class="step-num dourado">2</div>
-      <div class="step-meta">
-        <div class="step-tag">Seleção</div>
-        <h2>Selecionar a Turma</h2>
+  <!-- COMPARATIVO DOS MÉTODOS -->
+  <div style="margin-bottom: 30px;">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; color:var(--roxo-escuro);">Escolha seu método de lançamento</h2>
+      <div style="width:70px; height:4px; background:linear-gradient(90deg, var(--roxo), var(--dourado)); border-radius:2px; margin:10px auto 0;"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div style="background: white; border-radius: 20px; padding: 28px; border: 2px solid #ede8f9; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">✏️</div>
+        <h3 style="font-family:'Poppins',sans-serif; font-size:1.2rem; font-weight:800; color:var(--roxo-escuro); margin-bottom: 12px;">Método Manual</h3>
+        <p style="color:#555; font-weight:600; line-height:1.5;">Você digita o conteúdo de cada aula. Controle total sobre o texto registrado. Ideal para poucos lançamentos ou registros específicos.</p>
       </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Lista de Turmas</span></div>
-      <img src="img/tutoriais/img2.png" alt="Seleção de turma">
-      <div class="screenshot-caption">Lista de turmas vinculadas ao professor</div>
-    </div>
-    <div class="step-body">
-      <p>Na lista de diários, suas turmas aparecem organizadas por <strong>componente curricular</strong> e <strong>série/ano</strong>. Clique na turma desejada para abrir o diário correspondente.</p>
-    </div>
-    <ul class="step-list">
-      <li><span class="num">1</span> Localize a turma pelo nome ou série</li>
-      <li><span class="num">2</span> Clique no nome da turma para entrar no diário</li>
-      <li><span class="num">3</span> Aguarde o carregamento completo da página</li>
-    </ul>
-    <div class="callout tip">
-      <span class="callout-icon">✅</span>
-      <div class="callout-text"><strong>Dica:</strong> Use o filtro por <strong>período/bimestre</strong> para localizar a turma mais rapidamente quando houver muitos registros.</div>
+      <div style="background: white; border-radius: 20px; padding: 28px; border: 2px solid #ede8f9; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">✨</div>
+        <h3 style="font-family:'Poppins',sans-serif; font-size:1.2rem; font-weight:800; color:var(--roxo-escuro); margin-bottom: 12px;">Método IA</h3>
+        <p style="color:#555; font-weight:600; line-height:1.5;">IA gera o conteúdo automaticamente com base no tema informado. Você revisa e confirma antes de salvar. Economiza até 80% do tempo.</p>
+      </div>
     </div>
   </div>
 
   <div class="divider-line"></div>
 
-  <!-- PASSO 3 -->
-  <div class="step" id="passo3">
-    <div class="step-header">
-      <div class="step-num verde">3</div>
-      <div class="step-meta">
-        <div class="step-tag">Navegação</div>
-        <h2>Acessar a Seção de Aulas</h2>
-      </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Diário da Turma</span></div>
-      <img src="img/tutoriais/img3.png" alt="Seção de aulas">
-      <div class="screenshot-caption">Dentro do diário — aba "Aulas" selecionada</div>
-    </div>
-    <div class="step-body">
-      <p>Dentro do diário da turma, localize as abas disponíveis no topo da página. Clique em <strong>"Aulas"</strong> para acessar o registro de conteúdos e frequência.</p>
-      <p>A tela exibirá o calendário com as datas previstas e os campos de conteúdo programático para preenchimento.</p>
-    </div>
-    <div class="callout warn">
-      <span class="callout-icon">⚠️</span>
-      <div class="callout-text"><strong>Importante:</strong> Antes de continuar, verifique se o <strong>bimestre correto</strong> está selecionado. Um registro no bimestre errado pode gerar inconsistências no sistema.</div>
-    </div>
-  </div>
-
-  <div class="divider-line"></div>
-
-  <!-- PASSO 4 -->
-  <div class="step" id="passo4">
-    <div class="step-header">
-      <div class="step-num escuro">4</div>
-      <div class="step-meta">
-        <div class="step-tag">Extensão</div>
-        <h2>Ativar a DED Express</h2>
-      </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">Chrome — Painel da Extensão DED Express</span></div>
-      <img src="img/tutoriais/img4.png" alt="Painel da extensão">
-      <div class="screenshot-caption">Clique no ícone da extensão na barra do Chrome para abrir o painel</div>
-    </div>
-    <div class="step-body">
-      <p>Com a aba de Aulas aberta no DED+, clique no ícone da <strong>DED Express</strong> na barra de extensões do Chrome (canto superior direito).</p>
-      <p>O painel da extensão abrirá sobre a página. No primeiro acesso, pode ser solicitado o <strong>login com seu e-mail</strong> para validar sua licença.</p>
-    </div>
-    <ul class="step-list">
-      <li><span class="num">1</span> Clique no ícone 🟣 da DED Express no Chrome</li>
-      <li><span class="num">2</span> Faça login caso solicitado (e-mail + código)</li>
-      <li><span class="num">3</span> O painel se abrirá automaticamente</li>
-      <li><span class="num">4</span> A extensão detectará a turma aberta no DED+</li>
-    </ul>
-  </div>
-
-  <div class="divider-line"></div>
-
-  <!-- COMPARATIVO -->
-  <div class="section-label">Escolha seu método de lançamento</div>
-  <div class="compare">
-    <div class="compare-card manual">
-      <h4>✏️ Método Manual</h4>
-      <ul>
-        <li>Você digita o conteúdo de cada aula</li>
-        <li>Controle total sobre o texto registrado</li>
-        <li>Ideal para registros específicos</li>
-        <li>Indicado para poucos lançamentos</li>
-      </ul>
-    </div>
-    <div class="compare-card ai">
-      <h4>✨ Método IA</h4>
-      <ul>
-        <li>IA gera o conteúdo automaticamente</li>
-        <li>Você revisa e confirma antes de salvar</li>
-        <li>Ideal para lançamentos em lote</li>
-        <li>Economiza até 80% do tempo</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider-line"></div>
-
-  <!-- PASSO 5 — MANUAL -->
-  <div class="step" id="passo5">
-    <div class="step-header">
-      <div class="step-num light">5</div>
-      <div class="step-meta">
-        <div class="step-tag">Método Manual</div>
-        <h2>Lançamento Manual de Aulas</h2>
-      </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Painel Manual</span></div>
-      <img src="img/tutoriais/img5.png" alt="Modo manual">
-      <div class="screenshot-caption">Painel em modo manual — campos de conteúdo editáveis por aula</div>
-    </div>
-    <div class="step-body">
-      <p>No painel da extensão, selecione a aba <strong>"Manual"</strong>. As aulas aparecerão listadas com as respectivas datas.</p>
-      <p>Para cada aula, clique no campo de <strong>conteúdo programático</strong> e digiteo texto. Em seguida, marque a <strong>frequência dos alunos</strong>.</p>
-    </div>
-    <ul class="step-list">
-      <li><span class="num">1</span> Selecione a aba <strong>"Manual"</strong> no painel</li>
-      <li><span class="num">2</span> Escolha a data/aula que deseja registrar</li>
-      <li><span class="num">3</span> Digite o conteúdo programático no campo indicado</li>
-      <li><span class="num">4</span> Preencha a frequência (presença/ausência)</li>
-      <li><span class="num">5</span> Clique em <strong>"Salvar Aula"</strong> para gravar</li>
-      <li><span class="num">6</span> Repita para as demais aulas do período</li>
-    </ul>
-    <div class="callout tip">
-      <span class="callout-icon">💡</span>
-      <div class="callout-text"><strong>Dica:</strong> Use a tecla <strong>Tab</strong> para navegar rapidamente entre os campos sem usar o mouse.</div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Campo de Conteúdo Preenchido</span></div>
-      <img src="img/tutoriais/img6.png" alt="Conteúdo preenchido">
-      <div class="screenshot-caption">Conteúdo preenchido manualmente, pronto para salvar</div>
-    </div>
-  </div>
-
-  <div class="divider-line"></div>
-
-  <!-- PASSO 6 — IA -->
-  <div class="step" id="passo6">
-    <div class="step-header">
-      <div class="step-num gold2">6</div>
-      <div class="step-meta">
-        <div class="step-tag">Método IA</div>
-        <h2>Lançamento Automático com Inteligência Artificial</h2>
-      </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Painel IA</span></div>
-      <img src="img/tutoriais/img7.png" alt="Modo IA">
-      <div class="screenshot-caption">Campo de descrição do tema — a IA gera os conteúdos automaticamente</div>
-    </div>
-    <div class="step-body">
-      <p>No painel da extensão, clique na aba <strong>"Usar IA"</strong>. Um campo de texto solicitará uma descrição do conteúdo trabalhado nas aulas.</p>
-      <p>Escreva algo como <em>"Jogos coletivos e regras do futsal"</em> e a IA criará automaticamente os conteúdos para todas as aulas do período selecionado.</p>
-    </div>
-    <ul class="step-list">
-      <li><span class="num">1</span> Clique na aba <strong>"Usar IA"</strong> no painel</li>
-      <li><span class="num">2</span> Digite um tema ou descrição geral do conteúdo</li>
-      <li><span class="num">3</span> Selecione o intervalo de datas (ou deixe o padrão)</li>
-      <li><span class="num">4</span> Clique em <strong>"Gerar com IA"</strong> e aguarde</li>
-      <li><span class="num">5</span> Revise os textos sugeridos pela IA</li>
-      <li><span class="num">6</span> Edite pontualmente se necessário</li>
-      <li><span class="num">7</span> Clique em <strong>"Lançar Tudo"</strong> para salvar todas as aulas</li>
-    </ul>
-    <div class="callout ai">
-      <span class="callout-icon">✨</span>
-      <div class="callout-text"><strong>Como a IA funciona:</strong> O assistente usa o componente curricular, a série da turma e o tema fornecido para criar conteúdos variados, coerentes e alinhados à BNCC. Você sempre revisa antes de confirmar.</div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Conteúdos Gerados pela IA</span></div>
-      <img src="img/tutoriais/img8.png" alt="Conteúdos gerados pela IA">
-      <div class="screenshot-caption">Conteúdos gerados — revise antes de confirmar o lançamento</div>
-    </div>
-    <div class="callout warn">
-      <span class="callout-icon">⚠️</span>
-      <div class="callout-text"><strong>Revisão obrigatória:</strong> Sempre leia os conteúdos gerados antes de confirmar. A IA pode sugerir termos que precisam de ajuste para a realidade da sua turma.</div>
-    </div>
-  </div>
-
-  <div class="divider-line"></div>
-
-  <!-- PASSO 7 -->
-  <div class="step" id="passo7">
-    <div class="step-header">
-      <div class="step-num teal">7</div>
-      <div class="step-meta">
-        <div class="step-tag">Conclusão</div>
-        <h2>Revisão Final e Conclusão dos Lançamentos</h2>
-      </div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED+ — Lançamentos Concluídos</span></div>
-      <img src="img/tutoriais/img9.png" alt="Lançamentos concluídos">
-      <div class="screenshot-caption">Confirmação de lançamento — todos os registros salvos com sucesso</div>
-    </div>
-    <div class="step-body">
-      <p>Após salvar (manual ou via IA), o DED+ exibirá uma <strong>confirmação visual</strong> para cada aula registrada. A extensão também mostrará um resumo dos lançamentos.</p>
-      <p>Verifique se todas as aulas aparecem com o status <strong>"Registrado"</strong> antes de fechar o diário. </p>
-    </div>
-    <ul class="step-list">
-      <li><span class="num">1</span> Confirme que todas as aulas estão marcadas como "Salvo"</li>
-      <li><span class="num">2</span> Verifique a frequência registrada para cada data</li>
-      <li><span class="num">3</span> Em caso de erro, clique em "Retentar" na extensão</li>
-      <li><span class="num">4</span> Feche o painel da extensão quando concluir</li>
-      <li><span class="num">5</span> Repita o processo para outras turmas se necessário</li>
-    </ul>
-    <div class="callout tip">
-      <span class="callout-icon">🎉</span>
-      <div class="callout-text"><strong>Pronto!</strong> Seus lançamentos estão concluídos. A DED Express registrou tudo diretamente no DED+ sem que você precisasse preencher campo por campo manualmente!</div>
-    </div>
-    <div class="screenshot">
-      <div class="screenshot-bar"><div class="dots"><span></span><span></span><span></span></div><span class="bar-label">DED Express — Resumo Final</span></div>
-      <img src="img/tutoriais/img10.png" alt="Resumo final">
-      <div class="screenshot-caption">Resumo dos lançamentos exibido pela extensão após a conclusão</div>
-    </div>
-
-    <!-- CTA FINAL -->
-    <div style="text-align:center; margin-top:40px; padding:40px 30px; background:linear-gradient(135deg,var(--roxo-escuro),var(--roxo)); border-radius:22px; color:white;">
-      <div style="font-size:2.5rem; margin-bottom:12px;">🚀</div>
-      <h3 style="font-family:'Poppins',sans-serif; font-size:1.5rem; font-weight:800; margin-bottom:10px;">Ainda não tem a DED Express?</h3>
-      <p style="opacity:0.88; margin-bottom:22px; font-size:0.95rem;">Instale grátis na Chrome Web Store e comece a economizar horas toda semana!</p>
-      <a href="https://chromewebstore.google.com" target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:var(--dourado);color:#000;padding:14px 30px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;box-shadow:0 4px 20px rgba(245,184,0,0.5);transition:0.3s;">
-        ⚡ Instalar Grátis Agora
-      </a>
-    </div>
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <div class="emoji">🚀</div>
+    <h3>Ainda não tem a DED Express?</h3>
+    <p>Instale grátis na Chrome Web Store e comece a economizar horas toda semana!</p>
+    <a href="https://chromewebstore.google.com" target="_blank">
+      ⚡ Instalar Grátis Agora
+    </a>
   </div>
 
 </div>
